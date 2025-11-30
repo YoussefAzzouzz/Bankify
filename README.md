@@ -412,7 +412,7 @@ Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
 
 ## 👥 Auteurs
 
-- Votre Nom - Travail initial
+- Youssef Azzouz
 
 ## 🙏 Remerciements
 
