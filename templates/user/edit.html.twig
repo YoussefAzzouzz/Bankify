@@ -1,0 +1,37 @@
+{% extends 'backbase.html.twig' %}
+{% block title %}
+	<title>Edit User</title>
+{% endblock %}
+
+{% block content %}
+	<style>
+		.btn {
+			background-color: #007bff; /* Blue background */
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+			text-decoration: none;
+		}
+
+		/* Hover effect */
+		.btn:hover {
+			background-color: #0056b3; /* Darker blue on hover */
+		}
+	</style>
+
+
+	<!-- Include the form -->
+	{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+	<div
+		style="text-align: center; margin-top:10px">
+		<!-- Buttons -->
+		{{ include('user/_delete_form.html.twig') }}
+		<a href="{{ path('app_user_index') }}" class="btn" style="margin-top:10px">Back to list</a>
+
+
+	</div>
+
+{% endblock %}

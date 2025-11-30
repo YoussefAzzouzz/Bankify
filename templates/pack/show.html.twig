@@ -1,0 +1,56 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Pack</title>{% endblock %}
+
+{% block content %}
+<section Style='margin-left:20px' >
+<style>
+			/* Styles for the buttons */
+			.btn {
+				display: inline-block;
+				background-color: #007bff; /* Blue background */
+				color: white;
+				padding: 10px 20px;
+				text-align: center;
+				text-decoration: none;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s;
+				margin-right: 10px; /* Add some margin between the buttons */
+			}
+
+			/* Hover effect */
+			.btn:hover {
+				background-color: #0056b3; /* Darker blue on hover */
+			}
+		</style>
+    <h1>Pack</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom_pack</th>
+                <td>{{ pack.nomPack }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ pack.Description }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ pack.price }}</td>
+            </tr>
+            <tr>
+                <th>Benefits</th>
+                <td>{{ pack.benefits }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pack_index') }}"class="button2">back to list</a>
+
+    <a href="{{ path('app_pack_edit', {'nom_pack': pack.getNomPack()}) }}"class="button2">edit</a>
+
+    {{ include('pack/_delete_form.html.twig') }}
+{% endblock %}

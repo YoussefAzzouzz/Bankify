@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Remboursement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1470; /* Arrière-plan de couleur */
+            color: black; /* Couleur du texte en noir */
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto; /* Centrage horizontal */
+            margin-top: 50px; /* Espacement depuis le haut */
+            padding: 20px;
+            background-color: white; /* Arrière-plan blanc */
+            border-radius: 10px; /* Coins arrondis */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: white; font-size: 60px; margin-top: 60px;">Bankify</h1>
+    <div class="container">
+        <h1>Réçu de remboursement</h1>
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Id Remboursement</th>
+                    <td>{{ remboursement.id }}</td>
+                </tr>
+                <tr>
+                    <th>Id Crédit</th>
+                    <td>{{ remboursement.credit.getId() }}</td>
+                </tr>
+                <tr>
+                    <th>Montant Remboursé</th>
+                    <td>{{ remboursement.montantR }}</td>
+                </tr>
+                <tr>
+                    <th>Montant Restant</th>
+                    <td>{{ remboursement.montantRestant }}</td>
+                </tr>
+                <tr>
+                    <th>Date Remboursement</th>
+                    <td>{{ remboursement.dateR ? remboursement.dateR|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Durée Restante</th>
+                    <td>{{ remboursement.dureeRestante }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <h5 style="text-align:right;">Signer</h5>
+        <br><br><br>
+    </div>
+</body>
+</html>

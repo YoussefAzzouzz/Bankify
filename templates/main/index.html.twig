@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{# templates/calendar/basee.html.twig #}
+
+{% block title %}<title>Calendrier</title>{% endblock %}
+
+{% block content %}
+    <h1>Calendrier</h1>
+    <div id="calendar"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.js" integrity="sha256-oenhI3DRqaPoTMAVBBzQUjOKPEdbdFFtTCNIosGwro0=" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale:'fr'
+
+
+                // Add your calendar configuration options here
+            });
+            calendar.render();
+        });1
+    </script>
+{% endblock %}

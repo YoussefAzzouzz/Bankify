@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Paiement</title>{% endblock %}
+
+{% block content %}
+<style>
+    .credit-forum {
+        text-align: center;
+        color: white;
+    }
+</style>
+
+{% for message in app.flashes('danger') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<section class="slider_section ">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <div class="detail-box">
+                                <h1 style="text-align: center;">Payer une partie de credit</h1>
+                                    <div class="credit-forum">
+                                        {{ include('remboursement/_form.html.twig') }}
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="img-box">
+                                <img src="{{asset('front/images/slider-img.png')}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ol class="carousel-indicators">
+            <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+        </ol>
+    </div>
+</section>
+{% endblock %}
+{% block section %}
+{% endblock %}
+{% block sec2 %}{% endblock %}
+{% block why %}{% endblock %}
+{% block info %}{% endblock %}

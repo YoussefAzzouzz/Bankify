@@ -1,0 +1,46 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+    <style>
+        .vertical-radio label {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <table>
+        <tr>
+            <td style="padding: 5px;">
+                {{ form_label(form.montantTotale,"Montant Desiré (en DT)") }}
+            </td>
+            <td style="padding: 5px;">
+                {{ form_widget(form.montantTotale) }}
+            </td>
+            <td style="padding: 5px;">
+                {{ form_errors(form.montantTotale) }}
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 5px; display: flex;">
+                {{ form_label(form.interet,"Interét et durée") }}
+            </td>
+            <td style="padding: 5px;">
+                {{ form_widget(form.interet) }}
+            </td>
+            <td style="padding: 5px;">
+                {{ form_errors(form.interet) }}
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 5px;">
+                {{ form_label(form.categorie,"Catégorie du crédit") }}
+            </td>
+            <td style="padding: 5px;">
+                {{ form_widget(form.categorie) }}
+            </td>
+            <td style="padding: 5px;">
+                {{ form_errors(form.categorie) }}
+            </td>
+        </tr>
+    </table>
+    <br>
+    {{ form_widget(form.save) }}
+{{ form_end(form) }}

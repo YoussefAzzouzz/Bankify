@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Liste des Categories des Assurance</title>{% endblock %}
+
+{% block content %}
+    <h1>Liste des Categories des Assurance</h1>
+
+    <table class="table" style="background-color: white;">
+        <tbody>
+            {% for categorieAssurance in categories_assurance %}
+                <tr>
+                    <th>Nom Categorie:</th>
+                    <td>{{ categorieAssurance.nomCategorie }}</td>
+                    <th>Description:</th>
+                    <td>{{ categorieAssurance.description }}</td>
+                    <th>Type de Couverture:</th>
+                    <td>{{ categorieAssurance.typeCouverture }}</td>
+                    <th>Agence Responsable:</th>
+                    <td>{{ categorieAssurance.agenceResponsable }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

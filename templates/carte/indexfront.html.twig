@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Cartes</title>{% endblock %}
+
+{% block section %}
+    <center><h1>Les cartes </h1></center>
+
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <center>{{ message }}</center>
+    </div>
+{% endfor %}
+
+    <center>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero</th>
+                <th>Date_Expiration</th>
+                <th>Network</th>
+                <th>Statue de la carte</th>
+                <th>Type</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for carte in cartes %}
+            <tr>
+                <td>{{ carte.id }}</td>
+                <td>{{ carte.NumC }}</td>
+                <td>{{ carte.DateExp ? carte.DateExp|date('Y-m-d') : '' }}</td>
+                <td>{{ carte.TypeC }}</td>
+                <td>{{ carte.StatutC }}</td>
+                <td>
+                    {% if carte.getType() is not null %}
+                    {{ carte.getType().Type }}
+                    {% endif %}
+                </td>
+                <td>
+                    <a  class="btn btn-primary" href="{{ path('app_carte_show', {'id': carte.id}) }}">show</a>
+                    
+                    
+                </td>
+            </tr>
+            
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </center>
+
+    
+    
+{% endblock %}
+
+{% block sec2 %}
+{% endblock %}
+{% block why %}
+{% endblock %}

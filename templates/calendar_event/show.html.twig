@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CalendarEvent{% endblock %}
+
+{% block body %}
+    <h1>CalendarEvent</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ calendar_event.id }}</td>
+            </tr>
+            <tr>
+                <th>Event_name</th>
+                <td>{{ calendar_event.eventName }}</td>
+            </tr>
+            <tr>
+                <th>Event_start_date</th>
+                <td>{{ calendar_event.eventStartDate ? calendar_event.eventStartDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Event_end_date</th>
+                <td>{{ calendar_event.eventEndDate ? calendar_event.eventEndDate|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_calendar_event_index') }}">back to list</a>
+
+    <a href="{{ path('app_calendar_event_edit', {'id': calendar_event.id}) }}">edit</a>
+
+    {{ include('calendar_event/_delete_form.html.twig') }}
+{% endblock %}

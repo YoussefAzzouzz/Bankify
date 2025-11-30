@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block section %}
+    <div class="container">
+        <h1 class="text-center">Update Cheque</h1>
+       {{ form_start(cheque, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="form-group">
+            {{ form_label(cheque.montantC, 'Cheque Montant', {'label_attr': {'class': 'col-form-label'}}) }}
+            {{ form_widget(cheque.montantC, {'attr': {'class': 'form-control', 'placeholder': 'Enter cheque montant'}}) }}
+            {{ form_errors(cheque.montantC) }}  
+        </div>
+        
+        <!-- Add form field for destinationC -->
+        <div class="form-group">
+            {{ form_label(cheque.destinationC, 'Destination Compte', {'label_attr': {'class': 'col-form-label'}}) }}
+            {{ form_widget(cheque.destinationC, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(cheque.destinationC) }}  
+        </div>
+        
+        <!-- Add more form fields here as needed -->
+        
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Update</button>
+        </div>
+        {{ form_end(cheque) }}
+    </div>
+{% endblock %}

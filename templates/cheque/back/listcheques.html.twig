@@ -1,0 +1,73 @@
+{% extends 'backbase.html.twig' %}
+
+{% block content %}
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+    <div class="container">
+        <h2>Cheques List</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="border: 1px solid black;">ID</th>
+                        <th style="border: 1px solid black;">Montant</th>
+                        <th style="border: 1px solid black;">Date Emission</th>
+                        <th style="border: 1px solid black;">Destination</th>
+                         <th style="border: 1px solid black;">CompteID</th>
+                        <th style="border: 1px solid black;">Reclamations</th>
+                        <th style="border: 1px solid black;" >Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cheque in tabcheque %}
+                        <tr>
+                            <td style="border: 1px solid black;">{{ cheque.id}}</td>
+                            <td style="border: 1px solid black;" >{{ cheque.montantC }}</td>
+                            <td style="border: 1px solid black;">{{ cheque.dateEmission|date }}</td>
+                            <td style="border: 1px solid black;">{{ cheque.destinationC.getFullName() }}</td>
+                            <td style="border: 1px solid black;">{{ cheque.compteID.getid() }}</td>
+                            <td style="border: 1px solid black;">
+                                <table border="1" style="border-color: black;" class="table table-bordered">
+                                    <thead>
+                                        <tr style="border: 1px solid black;">
+                                            <th style="border: 1px solid black;">ID REC</th>
+                                            <th style="border: 1px solid black;">categorie</th>
+                                            <th style="border: 1px solid black;">Statut</th>
+                                            <th style="border: 1px solid black;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for enc in tab %}
+                                            {% if enc.chequeID == cheque %}
+                                                <tr>
+                                                    <td style="border: 1px solid black;">{{ enc.id }}</td>
+                                                    <td style="border: 1px solid black;">{{ enc.categorie }}</td>
+                                                    
+                                                    <td style="border: 1px solid black;">{{ enc.statutR }}</td>
+                                                    <td style="border: 1px solid black;">
+                                                        <a href="{{ path('reclamtion_remove', {'id': enc.id}) }}" class="btn btn-danger">Delete</a>
+                                                        <a href="{{ path('rec_edit', {'ref': enc.id}) }}" class="btn btn-primary">Update</a>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td style="border: 1px solid black;">
+                                <a href="{{ path('cheque_remove', {'id': cheque.id}) }}" class="btn btn-danger">Delete</a>
+                                <a href="{{ path('ch_edit', {'ref': cheque.id}) }}" class="btn btn-primary">Update</a>
+                                <a href="{{ path('ajouterreclamtion1', {'ref': cheque.id}) }}" class="btn btn-success">Add Reclamation</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="{{ path('ajoutercheque') }}" class="btn btn-primary">Add Cheque</a>
+    </div>
+{% endblock %}

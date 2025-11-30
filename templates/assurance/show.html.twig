@@ -1,0 +1,42 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Afficher Les Agences</title>{% endblock %}
+
+{% block content %}
+    <h1>Liste des Assurances</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ assurance.id }}</td>
+            </tr>
+            <tr>
+                <th>Type d'Assurance</th>
+                <td>{{ assurance.typeAssurance }}</td>
+            </tr>
+            <tr>
+                <th>MontantPrime</th>
+                <td>{{ assurance.montantPrime }}</td>
+            </tr>
+            <tr>
+                <th>Nomde l'Assuré</th>
+                <td>{{ assurance.nomAssure }}</td>
+            </tr>
+            <tr>
+                <th>Nom du Beneficiaire</th>
+                <td>{{ assurance.nomBeneficiaire }}</td>
+            </tr>
+            <tr>
+                <th>Info sur Assurance</th>
+                <td>{{ assurance.infoAssurance }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_assurance_index') }}"class="btn btn-primary">back to list</a>
+
+    <a href="{{ path('app_assurance_edit', {'id': assurance.id}) }}"class="btn btn-primary">edit</a>
+
+    {{ include('assurance/_delete_form.html.twig') }}
+{% endblock %}

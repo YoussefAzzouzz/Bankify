@@ -1,0 +1,86 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Credit</title>{% endblock %}
+
+{% block content %}
+<style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    
+    .table th,
+    .table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    
+    .table th {
+        background-color: #f2f2f2;
+    }
+    
+    .button {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 20px;
+    }
+    
+    .button:hover {
+        background-color: #0056b3;
+    }
+</style>
+<div class="container">
+    <a href="{{ path('credit_accepted') }}" class="button" style="background-color:#45a049">Retour</a>
+    <h1>Credit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id compte</th>
+                <td>{{ credit.compte.getId() }}</td>
+            </tr>
+            <tr>
+                <th>Id Credit</th>
+                <td>{{ credit.id }}</td>
+            </tr>
+            <tr>
+                <th>Montant Totale</th>
+                <td>{{ credit.montantTotale }}</td>
+            </tr>
+            <tr>
+                <th>Intérêt</th>
+                <td>{{ credit.interet }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ credit.categorie.getNom() }}</td>
+            </tr>
+            <tr>
+                <th>Date Création</th>
+                <td>{{ credit.dateC ? credit.dateC|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Durée Totale</th>
+                <td>{{ credit.dureeTotale }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('remboursement_admin',{'id': credit.id}) }}" class="button">Suivre Remboursements</a>
+</div>
+{% endblock %}

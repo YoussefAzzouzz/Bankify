@@ -1,0 +1,53 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+<style>
+    .is-invalid {
+        border-color: #dc3545; /* or any other color you want to use to indicate an error */
+    }
+</style>
+
+    <div class="form-group">
+    {{ form_label(form.Montant) }}
+    {% set montantClass = form_errors(form.Montant) ? 'is-invalid' : '' %}
+    {{ form_widget(form.Montant, {'attr': {'class': 'form-control ' ~ montantClass}}) }}
+    <div class="invalid-feedback">
+        {{ form_errors(form.Montant) }}
+    </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.Date_T,"Date") }}
+        {{ form_widget(form.Date_T, {'attr': {'class': 'form-control'}}) }}
+        <div class="form-errors-wrapper">
+        {{ form_errors(form.Date_T) }}
+    </div>
+    </div>
+
+    <div class="form-group">
+    {{ form_label(form.Type_T,"Type") }}
+    {% set typeTClass = form_errors(form.Type_T) ? 'is-invalid' : '' %}
+    {{ form_widget(form.Type_T, {'attr': {'class': 'form-control ' ~ typeTClass}}) }}
+    <div class="invalid-feedback">
+        {{ form_errors(form.Type_T) }}
+    </div>
+</div>
+
+    <div class="form-group">
+    {{ form_label(form.Statut_T,"Statue") }}
+    {% set statutTClass = form_errors(form.Statut_T) ? 'is-invalid' : '' %}
+    {{ form_widget(form.Statut_T, {'attr': {'class': 'form-control ' ~ statutTClass}}) }}
+    <div class="invalid-feedback">
+        {{ form_errors(form.Statut_T) }}
+    </div>
+</div>
+
+    <!-- Add CSS to create space between form fields -->
+    <style>
+        /* Adjust spacing between form fields */
+        .form-group + .form-group {
+            margin-top: 20px;
+        }
+    </style>
+
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

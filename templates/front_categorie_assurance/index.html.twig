@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title> Categorie Assurance</title>{% endblock %}
+
+{% block content %}
+    <h1>Categorie Assurance </h1>
+
+    <table class="table">
+        <thead>
+            <tr style="color: white;">
+                <th>Id</th>
+                <th>NomCategorie</th>
+                
+                <th>TypeCouverture</th>
+                <th>AgenceResponsable</th>
+                <th>actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie_assurance in categorie_assurances %}
+<tr>
+    <td><span style="color: white;">{{ categorie_assurance.id }}</span></td>
+    <td><span style="color: white;">{{ categorie_assurance.nomCategorie }}</span></td>
+    
+    <td><span style="color: white;">{{ categorie_assurance.typeCouverture }}</span></td>
+    <td><span style="color: white;">{{ categorie_assurance.agenceResponsable }}</span></td>
+    <td>
+        <a href="{{ path('app_front_categorie_show', {'id': categorie_assurance.id}) }}"class="btn btn-primary">plus d'info</a>
+        
+    </td>    
+</tr>
+
+
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

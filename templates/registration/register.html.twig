@@ -1,0 +1,120 @@
+{% block title %}
+	<title>Register</title>
+{% endblock %}
+
+{% block body %}
+
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+	{{ form_start(registrationForm,{'attr': {'novalidate': 'novalidate'}})  }}
+	<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+	{% for flash_error in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
+
+	<body style="width: 90%; height:200%" class="mt-7">
+
+		<div class="m-10 sm:m-2 bg-white shadow sm:rounded-lg flex justify-center flex-1" style="margin-left:12%">
+			<div class="lg:w-full xl:w-5/12 p-6 sm:p-12">
+
+				<div></div>
+				<div class="mt-20 flex flex-col items-center">
+					<h1 class="text-2xl xl:text-3xl font-extrabold">
+						Sign Up
+					</h1>
+					<div class="w-full flex-1 mt-20">
+						<div class="flex flex-col items-center"></div>
+
+
+						<div class="mx-auto max-w-xs">
+
+
+							<div class="form-outline">
+								{{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+								{{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+								{{ form_errors(registrationForm.email) }}
+							</div>
+
+
+							<div class="form-outline">
+								<div>
+									{{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'form-label'}}) }}
+									{{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+									{{ form_errors(registrationForm.plainPassword) }}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 mb-0 pb-2">
+									<div class="form-outline">
+										{{ form_label(registrationForm.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+										{{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
+										{{ form_errors(registrationForm.nom) }}
+									</div>
+								</div>
+								<div class="col-md-6 mb-0 pb-2">
+									<div class="form-outline">
+										{{ form_label(registrationForm.prenom, 'Prenom', {'label_attr': {'class': 'form-label'}}) }}
+										{{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
+										{{ form_errors(registrationForm.prenom) }}
+									</div>
+								</div>
+							</div>
+							<div class="row" style="margin-top:10px">
+								<div class="col-md-6 mb-4 d-flex align-items-center">
+
+									<div class="form-outline datepicker w-100">
+										<div>
+											{{ form_label(registrationForm.dateNaissance, 'Date de Naissance', {'label_attr': {'class': 'form-label'}}) }}
+											{{ form_widget(registrationForm.dateNaissance, {'attr': {'class': 'form-control', 'style': 'width: 120%;'}}) }}
+											{{ form_errors(registrationForm.dateNaissance) }}
+										</div>
+									</div>
+
+
+								</div>
+								<div class="col-md-6 mb-4 d-flex align-items-center">
+
+
+									<div class="form-group" style="margin-left:15px">
+										{{ form_label(registrationForm.genre, 'Genre', {'label_attr': {'class': 'form-label'}}) }}
+										{{ form_widget(registrationForm.genre, {'attr': {'class': 'form-control', 'style': 'width:160px'}}) }}
+										{{ form_errors(registrationForm.genre) }}
+									</div>
+
+
+								</div>
+
+								<button type="submit" class=" tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+									<svg class="w-6 h-6 -ml-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M16 21v-2a4 4 0 00-.4-4H5a4 4 0 00-4 4v2"/>
+										<circle cx="8.5" cy="7" r="4"/>
+										<path d="M20 8v6M23 11h-6"/>
+									</svg>
+									<span class="ml-3">
+										Sign up
+									</span>
+								</button>
+								<p>do you already have an email?
+									<a href="{{ path('app_login') }}">
+										click here</a>
+								</p>
+							</div>
+
+
+							{{ form_end(registrationForm) }}
+
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="flex-1 bg-indigo-100 text-center hidden lg:flex">
+			<div class="bg-contain bg-center bg-no-repeat">
+				<img src="assets/img/ai.png" alt="AI Image" style="width: 100%; height: 100%; object-fit: cover;"/>
+			</div>
+		</div>
+	</body>
+</div></body></form>{% endblock %}

@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Remboursement</title>{% endblock %}
+
+{% block content %}
+<section class="slider_section ">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <div class="detail-box">
+                                <h1>
+                                    Vous pouvez ici suivre les remboursements de votre crédit
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="img-box">
+                                <img src="{{asset('front/images/slider-img.png')}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <ol class="carousel-indicators">
+            <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+            
+        </ol>
+    </div>
+
+</section>
+{% endblock %}
+
+{% block section %}
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .button {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 20px;
+    }
+    
+    .button2 {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 3px 15px;
+        text-decoration: none;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-right: 5px;
+    }
+    
+    .button:hover,
+    .button2:hover {
+        background-color: #45a049;
+    }
+    
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    
+    .table th,
+    .table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .table th {
+        background-color: #f2f2f2;
+    }
+    
+    .center {
+        text-align: center;
+    }
+    
+</style>
+<div class="container">
+{% if remboursements != null %}
+    <a href="{{ path('credit_index_for_compte', {'id': remboursements[0].credit.getCompte().getId()}) }}" class="button">Retour</a>
+    <h2>Liste des remboursements</h2>
+{% endif %}
+    <br><br>
+    <button class="button" id="triAscendant">Plus anciens</button>
+    <button class="button" id="triDescendant">Plus récents</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="center">Id Remboursement</th>
+                <th class="center">Montant Remboursé</th>
+                <th class="center">Montant Restant</th>
+                <th class="center">Date Remboursement</th>
+                <th class="center">Durée Restante</th>
+                <th class="center">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            {% for remboursement in remboursements %}
+            <tr>
+                <td class="center">{{ remboursement.id }}</td>
+                <td class="center">{{ remboursement.montantR }}</td>
+                <td class="center">{{ remboursement.montantRestant }}</td>
+                <td class="center">{{ remboursement.dateR ? remboursement.dateR|date('Y-m-d') : '' }}</td>
+                <td class="center">{{ remboursement.dureeRestante }}</td>
+                <td class="center">
+                    <a href="{{ path('remboursement_show_client', {'id': remboursement.id}) }}" class="button2">Plus d'informations</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="center">Aucun remboursement trouvé</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    document.getElementById('triAscendant').addEventListener('click', function() {
+        trierRemboursements('ascendant');
+    });
+
+    document.getElementById('triDescendant').addEventListener('click', function() {
+        trierRemboursements('descendant');
+    });
+
+    function trierRemboursements(ordre) {
+        var url = '{{ path('tri_remboursements', {'id': credit.id}) }}'; // Utilisez credit.id au lieu de remboursement.credit.getId()
+        url += '?ordre=' + ordre;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                var tbody = document.getElementById('tbody');
+                tbody.innerHTML = '';
+
+                data.forEach(remboursement => {
+                    var row = `
+                        <tr>
+                            <td>${remboursement.id}</td>
+                            <td>${remboursement.montantR}</td>
+                            <td>${remboursement.montantRestant}</td>
+                            <td>${remboursement.dateR ? remboursement.dateR : ''}</td>
+                            <td>${remboursement.dureeRestante}</td>
+                            <td>
+                                <a href="${remboursement.remboursement_show_admin ? remboursement.remboursement_show_admin : ''}" class="button2">Plus d'informations</a>
+                            </td>
+                        </tr>`;
+                    tbody.innerHTML += row;
+                });
+            });
+    }
+</script>
+{% endblock %}
+{% block sec2 %}{% endblock %}
+{% block why %}{% endblock %}
+{% block info %}{% endblock %}

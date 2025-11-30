@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Edit Virement</title>{% endblock %}
+
+{% block content %}
+    <h1 style="text-align:center;color:white">Edit Virement</h1>
+
+    {{ include('virement/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_virement_index') }}"class="btn btn-primary" style="width: 150px; display: block; margin: 0 auto;">back to list</a>
+
+    {{ include('virement/_delete_form.html.twig') }}
+{% endblock %}

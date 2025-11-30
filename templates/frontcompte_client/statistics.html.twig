@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Statistiques des comptes clients</title>{% endblock %}
+
+{% block content %}
+<h1 style="text-align:center;color:white">Nos Stats</h1>
+<style>
+    /* Your custom CSS styles here */
+    .chart-container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    .chart-container canvas {
+        width: 300px; /* Adjust the width of each chart */
+        height: 300px; /* Adjust the height of each chart */
+    }
+</style>
+
+<div class="chart-container">
+    <div id="type-chart-container">
+        <canvas id="type-chart"></canvas>
+    </div>
+    <div id="pack-chart-container">
+        <canvas id="pack-chart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Statistics data
+    var statistics = {{ statistics|json_encode|raw }};
+
+    // Assorted colors for types
+    var typeColors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333'];
+
+    // Assorted colors for packs
+    var packColors = ['#3366E6', '#999966', '#99FF99', '#B34D4D', '#80B300'];
+
+    // Create type chart
+    var typeCtx = document.getElementById('type-chart').getContext('2d');
+    var typeChart = new Chart(typeCtx, {
+        type: 'pie',
+        data: {
+            labels: Object.keys(statistics.types),
+            datasets: [{
+                label: 'Types',
+                data: Object.values(statistics.types),
+                backgroundColor: typeColors,
+                borderColor: typeColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false // Set to false to adjust the chart size based on the canvas size
+            // Add other options as needed
+        }
+    });
+
+    // Create pack chart
+    var packCtx = document.getElementById('pack-chart').getContext('2d');
+    var packChart = new Chart(packCtx, {
+        type: 'pie',
+        data: {
+            labels: Object.keys(statistics.packs),
+            datasets: [{
+                label: 'Packs',
+                data: Object.values(statistics.packs),
+                backgroundColor: packColors,
+                borderColor: packColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false // Set to false to adjust the chart size based on the canvas size
+            // Add other options as needed
+        }
+    });
+</script>
+{% endblock %}

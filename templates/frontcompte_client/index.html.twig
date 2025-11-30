@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>CompteClient index</title>{% endblock %}
+
+{% block content %}
+<style>
+    /* Container for the form */
+    .form-container {
+        /* Increase the max-width to make the container wider */
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    /* Styles for form fields */
+    .form-field {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Style for the button */
+    .btn {
+        background-color: #007bff; /* Blue background */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-decoration: none; /* Remove default link underline */
+    }
+
+    /* Hover effect */
+    .btn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+</style>
+
+<div class="form-container"> 
+    <div>
+        <h1>CompteClient</h1>
+
+        <!-- Tableau de données -->
+        <table class="table">
+            <!-- En-têtes de colonnes -->
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Rib</th>
+                    <th>Mail</th>
+                    <th>Tel</th>
+                    <th>Solde</th>
+                    <th>TypeCompte</th>
+                    <th>Pack</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for compte_client in compte_clients %}
+                <!-- Lignes de données -->
+                <tr>
+                    <td>{{ compte_client.id }}</td>
+                    <td>{{ compte_client.nom }}</td>
+                    <td>{{ compte_client.prenom }}</td>
+                    <td>{{ compte_client.rib }}</td>
+                    <td>{{ compte_client.mail }}</td>
+                    <td>{{ compte_client.tel }}</td>
+                    <td>{{ compte_client.solde }}</td>
+                    <td>
+                        {% if compte_client.getNomType() is not null %}
+                            {{ compte_client.getNomType().NomType }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if compte_client.getNomPack() is not null %}
+                            {{ compte_client.getNomPack().NomPack }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <!-- Liens pour afficher et éditer le compte client -->
+                        <a href="{{ path('app_frontcompte_client_show', {'id': compte_client.id}) }}">show</a>
+                        <a href="{{ path('app_frontcompte_client_edit', {'id': compte_client.id}) }}">edit</a>
+                         <a href="{{ path('cheque_list1', {'ref': compte_client.id}) }}" class="button2">Show Cheques</a>
+                        <a href="{{ path('carte_index_for_compte', {'id': compte_client.id}) }}" class="button2">Mes Cartes</a>
+                     <a href="{{ path('credit_index_for_compte', {'id': compte_client.id}) }}" class="button2">Mes Credits</a>
+
+
+
+                    </td>
+                </tr>
+                {% else %}
+                <!-- Affichage en cas de pas de données -->
+                <tr>
+                    <td colspan="10">no records found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Lien pour créer un nouveau compte client -->
+<a class="nav-link" href="{{ path('app_frontcompte_client_new', {'id': app.user.id}) }}">Create new</a>
+        
+        <!-- Bouton pour accéder aux statistiques -->
+        <a class="btn" href="{{ path('app_frontcompte_client_statistics') }}">Statistiques</a>
+    </div>
+</div>
+{% endblock %}

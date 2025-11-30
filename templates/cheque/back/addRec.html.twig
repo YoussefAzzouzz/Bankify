@@ -1,0 +1,19 @@
+{% extends 'backbase.html.twig' %}
+{% block content %}
+    <h1 style="color: #333; text-align: center;">Add a New reclamation</h1>
+    <div style="max-width: 500px; margin: 0 auto;">
+        {{ form_start(reclamation, {'attr': {'class': 'my-form' ,'novalidate': 'novalidate'}}) }}
+        <div style="margin-bottom: 20px;">
+            {{ form_widget(reclamation.categorie, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Enter categorie'}}) }}
+        </div>
+         {{ form_errors(reclamation.categorie) }} 
+        <div style="margin-bottom: 20px;">
+            {{ form_widget(reclamation.statutR, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Enter statutR'}}) }}
+        </div>
+           {{ form_errors(reclamation.statutR) }} 
+        <div style="text-align: center;">
+            <button type="submit" class="btn btn-primary btn-lg">Add</button>
+        </div>
+        {{ form_end(reclamation) }}
+    </div>
+{% endblock %}

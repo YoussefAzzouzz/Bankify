@@ -1,0 +1,52 @@
+{% block content %}
+    <div class="container">
+        <h2 style="text-align: center; color: purple;">Cheques List</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered" style="border-collapse: collapse; width: 100%;">
+                <thead>
+                    <tr style="background-color: purple; color: white;">
+                        <th style="border: 1px solid black; padding: 8px;">ID</th>
+                        <th style="border: 1px solid black; padding: 8px;">Montant</th>
+                        <th style="border: 1px solid black; padding: 8px;">Date Emission</th>
+                        <th style="border: 1px solid black; padding: 8px;">Destination</th>
+                        <th style="border: 1px solid black; padding: 8px;">CompteID</th>
+                        <th style="border: 1px solid black; padding: 8px;">Reclamations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cheque in tabcheque %}
+                        <tr>
+                            <td style="border: 1px solid black; padding: 8px;">{{ cheque.id }}</td>
+                            <td style="border: 1px solid black; padding: 8px;">{{ cheque.montantC }}</td>
+                            <td style="border: 1px solid black; padding: 8px;">{{ cheque.dateEmission|date }}</td>
+                            <td style="border: 1px solid black; padding: 8px;">{{ cheque.destinationC.getFullName() }}</td>
+                            <td style="border: 1px solid black; padding: 8px;">{{ cheque.compteID.getid() }}</td>
+                            <td style="border: 1px solid black; padding: 8px;">
+                                <table class="table table-bordered" style="border-collapse: collapse; width: 100%; border: 1px solid black;">
+                                    <thead>
+                                        <tr style="background-color: purple; color: white;">
+                                            <th style="border: 1px solid black; padding: 8px;">ID REC</th>
+                                            <th style="border: 1px solid black; padding: 8px;">Categorie</th>
+                                            <th style="border: 1px solid black; padding: 8px;">Statut</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for enc in tab %}
+                                            {% if enc.chequeID == cheque %}
+                                                <tr>
+                                                    <td style="border: 1px solid black; padding: 8px;">{{ enc.id }}</td>
+                                                    <td style="border: 1px solid black; padding: 8px;">{{ enc.categorie }}</td>
+                                                    <td style="border: 1px solid black; padding: 8px;">{{ enc.statutR }}</td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

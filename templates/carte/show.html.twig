@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Carte</title>{% endblock %}
+
+{% block section %}
+    <center><h1>Carte</h1></center>
+    <center>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ carte.id }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ carte.NumC }}</td>
+            </tr>
+            <tr>
+                <th>Date_Expiration</th>
+                <td>{{ carte.DateExp ? carte.DateExp|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Network</th>
+                <td>{{ carte.TypeC }}</td>
+            </tr>
+            <tr>
+                <th>Statue</th>
+                <td>{{ carte.StatutC }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </center>
+    
+{% endblock %}
+
+{% block sec2 %}
+{% endblock %}
+{% block why %}
+{% endblock %}

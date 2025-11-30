@@ -1,0 +1,143 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Remboursement</title>{% endblock %}
+
+{% block content %}
+<style>
+    /* Styles for the button */
+    .button {
+        display: inline-block;
+        background-color: #4CAF50; /* Green background */
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    /* Hover effect */
+    .button:hover {
+        background-color: #45a049; /* Darker green */
+    }
+
+    /* Styles for the buttons */
+    .button2 {
+        display: inline-block;
+        background-color: #007bff; /* Blue background */
+        color: white;
+        padding: 6px 12px; /* Adjust padding to make the buttons smaller */
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-right: 5px; /* Add some margin between the buttons */
+    }
+
+    /* Hover effect */
+    .button2:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    /* Table styling */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+<a href="{{ path('credit_accepted') }}" class="button">Retour</a>
+<br><br>
+<button class="button" id="triAscendant">Plus anciens</button>
+<button class="button" id="triDescendant">Plus récents</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id Remboursement</th>
+                <th>Id Credit</th>
+                <th>Montant Remboursé</th>
+                <th>Montant Restant</th>
+                <th>Date Remboursement</th>
+                <th>Duree Restante</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        {% for remboursement in remboursements %}
+            <tr>
+                <td>{{ remboursement.id }}</td>
+                <td>{{ remboursement.credit.getId() }}</td>
+                <td>{{ remboursement.montantR }}</td>
+                <td>{{ remboursement.montantRestant }}</td>
+                <td>{{ remboursement.dateR ? remboursement.dateR|date('Y-m-d') : '' }}</td>
+                <td>{{ remboursement.dureeRestante }}</td>
+                <td>
+                    <a href="{{ path('remboursement_show_admin', {'id': remboursement.id}) }}" class="button2">Plus d'informations</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6" style="text-align: center;">Pas de remboursements effectués...</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        document.getElementById('triAscendant').addEventListener('click', function() {
+            trierRemboursements('ascendant');
+        });
+    
+        document.getElementById('triDescendant').addEventListener('click', function() {
+            trierRemboursements('descendant');
+        });
+    
+        function trierRemboursements(ordre) {
+            var url = '{{ path('tri_remboursements', {'id': credit.id}) }}'; // Utilisez credit.id au lieu de remboursement.credit.getId()
+            url += '?ordre=' + ordre;
+    
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    var tbody = document.getElementById('tbody');
+                    tbody.innerHTML = '';
+    
+                    data.forEach(remboursement => {
+                        var row = `
+                            <tr>
+                                <td>${remboursement.id}</td>
+                                <td>${remboursement.credit}</td>
+                                <td>${remboursement.montantR}</td>
+                                <td>${remboursement.montantRestant}</td>
+                                <td>${remboursement.dateR ? remboursement.dateR : ''}</td>
+                                <td>${remboursement.dureeRestante}</td>
+                                <td>
+                                    <a href="${remboursement.remboursement_show_admin ? remboursement.remboursement_show_admin : ''}" class="button2">Plus d'informations</a>
+                                </td>
+                            </tr>`;
+                        tbody.innerHTML += row;
+                    });
+                });
+        }
+    </script>
+       
+{% endblock %}

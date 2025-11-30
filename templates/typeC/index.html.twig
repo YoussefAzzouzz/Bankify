@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Type index{% endblock %}
+
+{% block body %}
+    <h1>Type index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Montant_max</th>
+                <th>Montant_min</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type in types %}
+            <tr>
+                <td>{{ type.id }}</td>
+                <td>{{ type.type }}</td>
+                <td>{{ type.montantMax }}</td>
+                <td>{{ type.montantMin }}</td>
+                <td>
+                    <a href="{{ path('app_typeC_show', {'id': type.id}) }}">show</a>
+                    <a href="{{ path('app_typeC_edit', {'id': type.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_typeC_new') }}">Create new</a>
+{% endblock %}

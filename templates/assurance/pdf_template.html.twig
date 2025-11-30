@@ -1,0 +1,34 @@
+{% block content %}
+    <div style="border: 2px solid #3C8DBC; padding: 10px; border-radius: 10px; background-color: #312686;">
+        
+        <h1 style="color: white; margin-bottom: 20px;">Les Assurances du Bankify </h1>
+        <table class="table">
+        <thead>
+            <tr>
+                <th class="white-header">Id</th>
+                <th class="white-header">Type d'Assurance</th>
+                <th class="white-header">Montant Prime</th>
+                <th class="white-header">Nom de l'Assuré</th>
+                <th class="white-header">Nom du Bénéficiaire</th>
+                <th class="white-header">Info sur l'Assurance</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for assurance in assurances %}
+                    <tr>
+                        <td style="color: #40E9E0;">{{ assurance.id }}</td>
+                        <td style="color: #40E9E0;">{{ assurance.typeAssurance }}</td>
+                        <td style="color: #40E9E0;">{{ assurance.montantPrime }}</td>
+                        <td style="color: #40E9E0;">{{ assurance.nomAssure }}</td>
+                        <td style="color: #40E9E0;">{{ assurance.nomBeneficiaire }}</td>
+                        <td style="color: #40E9E0;">{{ assurance.infoAssurance }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" style="color: #40E9E0;">Aucun enregistrement trouvé</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Liste des Categories des Assurance</title>{% endblock %}
+
+{% block content %}
+    <h1>Liste des Categories des Assurance</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categorie_assurance.id }}</td>
+            </tr>
+            <tr>
+                <th>NomCategorie</th>
+                <td>{{ categorie_assurance.nomCategorie }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ categorie_assurance.description }}</td>
+            </tr>
+            <tr>
+                <th>TypeCouverture</th>
+                <td>{{ categorie_assurance.typeCouverture }}</td>
+            </tr>
+            <tr>
+                <th>AgenceResponsable</th>
+                <td>{{ categorie_assurance.agenceResponsable }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_categorie_assurance_index') }}"class="btn btn-primary">back to list</a>
+
+    <a href="{{ path('app_categorie_assurance_edit', {'id': categorie_assurance.id}) }}"class="btn btn-primary">edit</a>
+
+    {{ include('categorie_assurance/_delete_form.html.twig') }}
+{% endblock %}

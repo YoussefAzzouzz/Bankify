@@ -1,0 +1,31 @@
+{% extends 'backbase.html.twig' %}
+
+{% block content %}
+<style>
+    .response-input {
+        height: 50px; /* Adjust the height as needed */
+        font-size: 18px; /* Adjust the font size as needed */
+    }
+</style>
+    <h1 style="color: #333; text-align: center;">Modify Reclamation</h1>
+    <div style="max-width: 500px; margin: 0 auto;">
+        {{ form_start(rec, {'attr': {'class': 'my-form','novalidate': 'novalidate'}}) }}
+        <div style="margin-bottom: 20px;">
+            {{ form_widget(rec.categorie, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Enter categorie'}}) }}
+        </div>
+        <div style="margin-bottom: 20px;">
+            {{ form_widget(rec.statutR, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Enter statut'}}) }}
+        </div>
+        <!-- Additional input field for response type text grande -->
+       <div style="margin-bottom: 20px;">
+    <textarea id="response" name="response" class="form-control form-control-lg response-input" placeholder="Enter response" rows="6"></textarea>
+        </div>
+        <div style="text-align: center;">
+            <button type="submit"  onclick="validateResponse()" class="btn btn-primary btn-lg">Modify</button>
+        </div>
+        {{ form_end(rec) }}
+    </div>
+ 
+
+
+{% endblock %}

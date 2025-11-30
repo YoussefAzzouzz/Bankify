@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+	<style>
+		/* Container for the form */
+		.form-container {
+			width: 500px; /* Increase the max-width to make the container wider */
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #f9f9f9;
+		}
+
+		/* Styles for form fields */
+		.form-field {
+			margin-bottom: 20px;
+		}
+
+		.form-label {
+			display: block;
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+
+		.form-input {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+
+		/* Style for the button */
+		.btn {
+			background-color: #007bff; /* Blue background */
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		/* Hover effect */
+		.btn:hover {
+			background-color: #0056b3; /* Darker blue on hover */
+		}
+	</style>
+	<div class="form-container">
+		<h1 style="text-align: center;">
+			User Details</h1>
+		{{ form_errors(ProfileType) }}
+		{{ form_start(ProfileType) }}
+		<div class="form-field">
+			{{ form_label(ProfileType.email, 'Email:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(ProfileType.email, {'attr': {'class': 'form-input'}}) }}
+		</div>
+
+		<div class="form-field">
+			{{ form_label(ProfileType.nom, 'Nom:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(ProfileType.nom, {'attr': {'class': 'form-input'}}) }}
+		</div>
+		<div class="form-field">
+			{{ form_label(ProfileType.prenom, 'Prenom:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(ProfileType.prenom, {'attr': {'class': 'form-input'}}) }}
+		</div>
+		<div class="form-field">
+			{{ form_label(ProfileType.dateNaissance, 'Date de Naissance:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(ProfileType.dateNaissance, {'attr': {'class': 'form-input'}}) }}
+		</div>
+		<div class="form-field">
+			{{ form_label(ProfileType.genre, 'Genre:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(ProfileType.genre, {'attr': {'class': 'form-input'}}) }}
+		</div>
+		<div class="form-field">
+			{{ form_label(ProfileType.image, 'Upload Image:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(ProfileType.image, {'attr': {'class': 'form-input'}}) }}
+		</div>
+		{% if app.user.images|length > 0 %}
+			{% set lastImage = app.user.images.last() %}
+			<div style="display: flex; justify-content: center; align-items: center;">
+				<div style="max-width: 100px; max-height: 100px;">
+					<img src="{{ asset('uploads/images/users/' ~ lastImage.filename) }}" alt="Last Uploaded Image" style="max-width: 100%; max-height: 100%; display: block; margin: auto;">
+				</div>
+			</div>
+		{% endif %}
+
+		<div>
+			<button type="submit" class="btn">{{ button_label|default('Update') }}</button>
+			{{ form_end(ProfileType) }}
+			<a style=" background-color: red;
+															 color: white;" href="{{ path('user_delete', {'id': app.user.id}) }}" onclick="return confirm('Are you sure you want to delete this account?')" class="btn btn-danger">Delete</a>
+		</div>
+
+
+	</div>
+{% endblock %}

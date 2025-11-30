@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Edit Transaction</title>{% endblock %}
+
+
+{% block section %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center"> Modifier la transaction</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center"> <!-- Center the form -->
+                           {{ include('transaction/_form.html.twig', {'button_label': 'Update'}) }}
+                        </div>
+                        <center><a href="{{ path('app_transaction_index') }}" class="btn btn-secondary mt-3">Back to list</a>
+                        {{ include('transaction/_delete_form.html.twig') }}</center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block sec2 %}
+{% endblock %}
+{% block why %}
+{% endblock %}

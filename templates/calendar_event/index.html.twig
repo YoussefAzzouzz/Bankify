@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Calendrier</title>{% endblock %}
+
+{% block content %}
+    <h1>Calendrier</h1>
+    <div id="calendar"></div>
+
+    <h2>CalendarEvent index</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Event_name</th>
+                <th>Event_start_date</th>
+                <th>Event_end_date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for calendar_event in calendar_events %}
+            <tr>
+                <td>{{ calendar_event.id }}</td>
+                <td>{{ calendar_event.eventName }}</td>
+                <td>{{ calendar_event.eventStartDate ? calendar_event.eventStartDate|date('Y-m-d') : '' }}</td>
+                <td>{{ calendar_event.eventEndDate ? calendar_event.eventEndDate|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_calendar_event_show', {'id': calendar_event.id}) }}">show</a>
+                    <a href="{{ path('app_calendar_event_edit', {'id': calendar_event.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_calendar_event_new') }}">Create new</a>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.js" integrity="sha256-oenhI3DRqaPoTMAVBBzQUjOKPEdbdFFtTCNIosGwro0=" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale:'fr'
+            });
+            calendar.render();
+        });
+    </script>
+
+    <script>
+        const createEventUrl = '{{ path('app_calendar_event_new') }}';
+    </script>
+
+    <script src="{{ asset('js/calendar.js') }}"></script>
+
+{% endblock %}

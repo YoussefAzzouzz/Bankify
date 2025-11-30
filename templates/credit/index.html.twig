@@ -1,0 +1,157 @@
+{% extends 'backbase.html.twig' %}
+{% block title %}<title>Credits</title>{% endblock %}
+
+{% block content %}
+<style>
+    .table-container {
+        margin: 0 auto;
+    }
+
+    .cell {
+        padding: 40px;
+        text-align: center;
+    }
+
+    .link {
+        font-size: 26px;
+        text-align: center;
+    }
+    .table-statut{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 70px;
+    }
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<form id="searchForm" style="text-align: center;">
+    <div style="margin-bottom: 10px;">
+        <input type="text" name="keyword" id="keyword" placeholder="Rechercher par numéro, montant, intérêt, date ou durée totale" style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; width: 300px;">
+        <button type="submit" style="padding: 8px 15px; border-radius: 5px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Rechercher</button>
+        <button type="reset" id="clearButton" style="padding: 8px 15px; border-radius: 5px; background-color: #f44336; color: white; border: none; cursor: pointer;">Effacer</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>    
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    const searchForm = document.getElementById('searchForm');
+
+// Ajoutez un écouteur d'événement pour le soumission du formulaire
+searchForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Empêchez le formulaire de soumettre normalement
+
+    // Récupérez le mot-clé de recherche depuis l'input
+    const keyword = document.getElementById('keyword').value;
+
+    // Envoyez le mot-clé au contrôleur Symfony via AJAX
+    fetch('{{ path('credit_search') }}?keyword=' + encodeURIComponent(keyword), {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Mettez à jour la section des résultats avec les nouveaux crédits
+        const creditsTableBody = document.querySelector('.table tbody');
+        creditsTableBody.innerHTML = ''; // Effacez les résultats précédents
+        const creditsTableHead = document.querySelector('.table thead');
+        creditsTableHead.innerHTML = ''; // Effacez les résultats précédents
+        const head = document.createElement('tr');
+            head.innerHTML = `
+                <th>Id de crédit</th>
+                <th>Id de compte</th>
+                <th>Montant Total</th>
+                <th>Intérêt</th>
+                <th>Catégorie</th>
+                <th>Date Création</th>
+                <th>Durée Totale</th>
+                <th>Statut</th>
+            `;
+        creditsTableHead.appendChild(head);
+    
+        data.credits.forEach(credit => {
+            // Vérifiez si credit est défini
+            if (credit && typeof credit === 'object') {
+                // Créez les lignes de tableau pour chaque crédit
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${credit.id ? credit.id : ''}</td>
+                    <td>${credit.compteId ? credit.compteId : ''}</td>
+                    <td>${credit.montantTotale ? credit.montantTotale : ''}</td>
+                    <td>${credit.interet ? credit.interet : ''}</td>
+                    <td>${credit.categorieNom ? credit.categorieNom : ''}</td>
+                    <td>${credit.dateC ? credit.dateC : ''}</td>
+                    <td>${credit.dureeTotale ? credit.dureeTotale : ''}</td>
+                    <td>${credit.statut ? credit.statut : ''}</td>
+                `;
+                creditsTableBody.appendChild(row);
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+const clearButton = document.getElementById('clearButton');
+
+// Ajoutez un gestionnaire d'événements pour le clic sur le bouton Effacer
+clearButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Empêchez le formulaire de soumettre normalement
+
+    // Effacez le contenu de l'élément contenant les résultats
+    const creditsTableBody = document.querySelector('.table tbody');
+    creditsTableBody.innerHTML = ''; // Effacez les résultats précédents
+
+    const creditsTableHead = document.querySelector('.table thead');
+    creditsTableHead.innerHTML = ''; // Effacez les résultats précédents
+
+    // Effacez le champ de recherche
+    document.getElementById('keyword').value = '';
+});
+</script>
+
+<h1 style="padding-left: 10px;">Que voulez-vous consulter...</h1>
+
+<div class="table-container">
+    <table class="table-statut">
+        <tr>
+            <td class="cell">
+                <img src="https://cdn.pixabay.com/photo/2016/08/19/20/37/time-1606153_1280.png" alt="En attente" width="250px">
+            </td>
+            <td class="cell">
+                <img src="https://cdn.pixabay.com/photo/2020/12/17/22/32/music-5840715_1280.png" alt="En cours" width="250px">
+            </td>
+            <td class="cell">
+                <img src="https://cdn.pixabay.com/photo/2021/05/04/18/17/right-6229376_1280.png" alt="Payés" width="250px">
+            </td>
+        </tr>
+        <tr>
+            <td class="link"><a href="{{ path('credits_demandes') }}">En attente</a></td>
+            <td class="link"><a href="{{ path('credit_accepted') }}">En cours</a></td>
+            <td class="link"><a href="{{ path('credits_payes') }}">Payés</a></td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

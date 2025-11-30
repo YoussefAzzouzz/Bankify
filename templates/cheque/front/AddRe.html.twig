@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block section %}
+    <h1>Add Reclamation</h1>
+    {{ form_start(reclamtion, {'attr': {'novalidate': 'novalidate', 'id': 'reclamtion-form'}}) }}
+    <div class="form-group">
+        {{ form_label(reclamtion.categorie, 'Categorie', {'label_attr': {'class': 'col-form-label'}}) }}
+        {{ form_widget(reclamtion.categorie, {'attr': {'class': 'form-control', 'placeholder': 'Enter montant'}}) }}
+        {{ form_errors(reclamtion.categorie) }}  
+    </div>
+   
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="submit-btn">Add</button>
+    </div>
+    {{ form_end(reclamtion) }}
+
+    
+{% endblock %}

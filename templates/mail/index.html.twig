@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{# templates/mail/index.html.twig #}
+
+{% block title %}<title>ENVOIE DE MAIL AGENCES</title>{% endblock %}
+
+{% block content %}
+    <h1>Envoyer un email</h1>
+    <form method="post" action="{{ path('app_send_email') }}">
+        <div>
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="subject">Sujet :</label>
+            <input type="text" id="subject" name="subject" required>
+        </div>
+        <div>
+            <button type="submit">Envoyer</button>
+        </div>
+    </form>
+{% endblock %}

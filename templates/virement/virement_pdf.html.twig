@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Virement Details</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .company-name {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="company-name">
+        Bankify
+    </div>
+    <h1>Virement Details</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <td>{{ virement.id }}</td>
+        </tr>
+        <tr>
+            <th>Compte Source</th>
+            <td>{{ virement.compteSource }}</td>
+        </tr>
+        <tr>
+            <th>Compte Destination</th>
+            <td>{{ virement.compteDestination }}</td>
+        </tr>
+        <tr>
+            <th>Montant</th>
+            <td>{{ virement.montant }}</td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td>{{ virement.date|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <th>Heure</th>
+            <td>{{ virement.heure ? virement.heure|date('H:i:s') : '' }}</td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </table>
+</div>
+<div class="footer">
+    Generated at: {{ "now"|date("Y-m-d H:i:s") }} | Page 1
+</div>
+</body>
+</html>

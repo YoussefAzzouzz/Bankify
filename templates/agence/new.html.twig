@@ -1,0 +1,15 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Ajouter des Agences</title>{% endblock %}
+
+{% block content %}
+    <h1>Create new Agence</h1>
+    {% for flashMessage in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {{ include('agence/_form.html.twig') }}
+
+    <a href="{{ path('app_agence_index') }}"class="btn btn-primary">back to list</a>
+{% endblock %}

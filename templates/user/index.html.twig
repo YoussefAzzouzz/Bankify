@@ -1,0 +1,94 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}
+	<title>Gestion d' Utilisateurs</title>
+{% endblock %}
+
+{% block content %}
+	<section style="margin-left:50px">
+		<h1>Table des Utilisateurs</h1>
+		<style>
+			/* Styles for the button */
+			.button {
+				display: inline-block;
+				background-color: #4CAF50; /* Green background */
+				color: white;
+				padding: 10px 20px;
+				text-align: center;
+				text-decoration: none;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s;
+			}
+
+			/* Hover effect */
+			.button:hover {
+				background-color: #45a049; /* Darker green */
+			}
+			/* Styles for the buttons */
+			.button2 {
+				display: inline-block;
+				background-color: #007bff; /* Blue background */
+				color: white;
+				padding: 6px 12px; /* Adjust padding to make the buttons smaller */
+				text-align: center;
+				text-decoration: none;
+				border: none;
+				border-radius: 3px;
+				cursor: pointer;
+				transition: background-color 0.3s;
+				margin-right: 5px; /* Add some margin between the buttons */
+			}
+
+			/* Hover effect */
+			.button2:hover {
+				background-color: #0056b3; /* Darker blue on hover */
+			}
+		</style>
+		<table class="table">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Email</th>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Date de Naissance</th>
+					<th>Genre</th>
+					<th>Status</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% set i = 1 %}
+				{% for user in users %}
+					{% if 'ROLE_ADMIN' not in user.roles %}
+						<tr>
+							<td>{{ i }}</td>
+							<td>{{ user.email }}</td>
+							<td>{{ user.nom ?? 'N/A' }}</td>
+							<td>{{ user.prenom ?? 'N/A' }}</td>
+							<td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : 'N/A' }}</td>
+							<td>{{ user.genre ?? 'N/A' }}</td>
+
+							<td>{{ user.isActive ? 'Active' : 'Inactive' }}</td>
+							<td>
+								<a href="{{ path('app_user_show', {'id': user.id}) }}" class="button2">Show</a>
+								<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="button2">Edit</a>
+								<a href="{{ path('admin_user_activate', {'id': user.id}) }}" class="button2">Activate</a>
+								<a href="{{ path('admin_user_deactivate', {'id': user.id}) }}" style="background-color:red" class="button2">Deactivate</a>
+							</td>
+						</tr>
+						{% set i = i + 1 %}
+					{% endif %}
+				{% else %}
+					<tr>
+						<td colspan="5">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_user_new') }}" class="button">Create new</a>
+	</section>
+{% endblock %}

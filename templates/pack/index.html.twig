@@ -1,0 +1,80 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Pack</title>{% endblock %}
+
+{% block content %}
+<style>
+    /* Styles for the button */
+    .button {
+        display: inline-block;
+        background-color: #4CAF50; /* Green background */
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    /* Hover effect */
+    .button:hover {
+        background-color: #45a049; /* Darker green */
+    }
+    /* Styles for the buttons */
+    .button2 {
+        display: inline-block;
+        background-color: #007bff; /* Blue background */
+        color: white;
+        padding: 6px 12px; /* Adjust padding to make the buttons smaller */
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-right: 5px; /* Add some margin between the buttons */
+    }
+
+    /* Hover effect */
+    .button2:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+</style>
+<h1>Pack</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom_pack</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Benefits</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for pack in packs %}
+        <tr>
+            <td>{{ pack.getNomPack() }}</td>
+            <td>{{ pack.Description }}</td>
+            <td>{{ pack.price }}</td>
+            <td>{{ pack.benefits }}</td>
+            <td>
+                <a href="{{ path('app_pack_show', {'nom_pack': pack.getNomPack()}) }}" class="button2">show</a>
+                <a href="{{ path('app_pack_edit', {'nom_pack': pack.getNomPack()}) }}" class="button2">edit</a>
+
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="5">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ path('app_pack_new') }}" class="button">Create new</a>
+</div>
+{% endblock %}

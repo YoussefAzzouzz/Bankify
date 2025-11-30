@@ -1,0 +1,80 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Remboursement</title>{% endblock %}
+
+{% block content %}
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .button {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 20px;
+    }
+    
+    .button:hover {
+        background-color: #45a049;
+    }
+    
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    
+    .table th,
+    .table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    
+    .table th {
+        background-color: #f2f2f2;
+    }
+    
+</style>
+<div class="container">
+    <a href="{{ path('remboursement_admin',{'id':remboursement.credit.getId()}) }}" class="button">Retour à la liste</a>
+    <h2>Détails du remboursement</h2>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id Remboursement</th>
+                <td>{{ remboursement.id }}</td>
+            </tr>
+            <tr>
+                <th>Id Crédit</th>
+                <td>{{ remboursement.credit.getId() }}</td>
+            </tr>
+            <tr>
+                <th>Montant Remboursé</th>
+                <td>{{ remboursement.montantR }}</td>
+            </tr>
+            <tr>
+                <th>Montant Restant</th>
+                <td>{{ remboursement.montantRestant }}</td>
+            </tr>
+            <tr>
+                <th>Date Remboursement</th>
+                <td>{{ remboursement.dateR ? remboursement.dateR|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Durée Restante</th>
+                <td>{{ remboursement.dureeRestante }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

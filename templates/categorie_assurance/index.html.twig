@@ -1,0 +1,44 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title> Categorie Assurance</title>{% endblock %}
+
+{% block content %}
+    <h1>Categorie Assurance </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomCategorie</th>
+                <th>Description</th>
+                <th>TypeCouverture</th>
+                <th>AgenceResponsable</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie_assurance in categorie_assurances %}
+            <tr>
+                <td>{{ categorie_assurance.id }}</td>
+                <td>{{ categorie_assurance.nomCategorie }}</td>
+                <td>{{ categorie_assurance.description }}</td>
+                <td>{{ categorie_assurance.typeCouverture }}</td>
+                <td>{{ categorie_assurance.agenceResponsable }}</td>
+                <td>
+                    <a href="{{ path('app_categorie_assurance_show', {'id': categorie_assurance.id}) }}"class="btn btn-primary">show</a>
+                    <a href="{{ path('app_categorie_assurance_edit', {'id': categorie_assurance.id}) }}"class="btn btn-primary">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_categorie_assurance_new') }}"class="btn btn-primary">Create new</a>
+    <a href="{{ path('app_assurance_index') }}"class="btn btn-primary">Go to assurance</a>
+    <a href="{{ path('app_agence_index') }}" class="btn btn-primary">Go to Agence</a>
+    <a href="{{ path('app_home_page') }}"class="btn btn-primary">Go to FRONT</a>
+{% endblock %}

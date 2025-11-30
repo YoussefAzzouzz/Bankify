@@ -1,0 +1,50 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Type</title>{% endblock %}
+
+{% block content %}
+<section Style='margin-left:20px' >
+<style>
+			/* Styles for the buttons */
+			.btn {
+				display: inline-block;
+				background-color: #007bff; /* Blue background */
+				color: white;
+				padding: 10px 20px;
+				text-align: center;
+				text-decoration: none;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s;
+				margin-right: 10px; /* Add some margin between the buttons */
+			}
+
+			/* Hover effect */
+			.btn:hover {
+				background-color: #0056b3; /* Darker blue on hover */
+			}
+		</style>
+
+    <h1>Type</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>NomType</th>
+                <td>{{ type.nomType }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ type.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_index') }}">back to list</a>
+
+    <a href="{{ path('app_type_edit', {'nomType': type.nomType}) }}">edit</a>
+
+    {{ include('type/_delete_form.html.twig') }}
+    </section>
+{% endblock %}

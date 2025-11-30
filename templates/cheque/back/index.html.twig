@@ -1,0 +1,30 @@
+{% extends 'backbase.html.twig' %}
+{% block content %}
+    <h1 style="color: #333; text-align: center;">Add the cheque</h1>
+    <div style="max-width: 500px; margin: 0 auto;">
+        {{ form_start(cheque, {'attr': {'class': 'my-form','novalidate': 'novalidate'}}) }}
+        <div style="margin-bottom: 20px;">
+            {{ form_widget(cheque.montantC, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Enter montant'}}) }}
+        </div>
+          {{ form_errors(cheque.montantC) }} 
+          
+        <div style="margin-bottom: 20px;">
+            {{ form_widget(cheque.destinationC, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Enter destination'}}) }}
+        </div>
+                  {{ form_errors(cheque.destinationC) }} 
+
+
+         <div style="margin-bottom: 20px;">
+            {{ form_widget(cheque.compteID, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Enter CompteID'}}) }}
+        </div>
+                  {{ form_errors(cheque.compteID) }} 
+
+
+      
+       
+        <div style="text-align: center;">
+            <button type="submit" class="btn btn-primary btn-lg">Add</button>
+        </div>
+        {{ form_end(cheque) }}
+    </div>
+{% endblock %}

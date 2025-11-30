@@ -1,0 +1,83 @@
+{% extends 'backbase.html.twig' %}
+{% block body %}
+	<style>
+		/* Container for the form */
+		.form-container {
+			max-width: 400px;
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #f9f9f9;
+		}
+
+		/* Styles for form fields */
+		.form-field {
+			margin-bottom: 20px;
+		}
+
+		.form-label {
+			display: block;
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+
+		.form-input {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+
+		/* Style for the button */
+		.btn {
+			background-color: #007bff; /* Blue background */
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		/* Hover effect */
+		.btn:hover {
+			background-color: #0056b3; /* Darker blue on hover */
+		}
+	</style>
+
+	<!-- HTML for the form -->
+	<div class="form-container">
+		<h1>User Details</h1>
+		{{ form_start(form) }}
+		<div class="form-field">
+			{{ form_label(form.email, 'Email:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(form.email, {'attr': {'class': 'form-input'}}) }}
+		</div>
+		<div class="form-field">
+			{{ form_label(form.password, 'Mot de Passe:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(form.password, {'attr': {'class': 'form-input'}}) }}
+		</div>
+		<div class="form-field">
+			{{ form_label(form.nom, 'Nom:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(form.nom, {'attr': {'class': 'form-input'}}) }}
+		</div>
+		<div class="form-field">
+			{{ form_label(form.prenom, 'Prenom:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(form.prenom, {'attr': {'class': 'form-input'}}) }}
+		</div>
+		<div class="form-field">
+			{{ form_label(form.dateNaissance, 'Date de Naissance:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(form.dateNaissance, {'attr': {'class': 'form-input'}}) }}
+		</div>
+		<div class="form-field">
+			{{ form_label(form.genre, 'Genre:', {'label_attr': {'class': 'form-label'}}) }}
+			{{ form_widget(form.genre, {'attr': {'class': 'form-input'}}) }}
+		</div>
+
+		<button type="submit" class="btn">{{ button_label|default('Update') }}</button>
+		{{ form_end(form) }}
+
+	</div>
+
+{% endblock %}

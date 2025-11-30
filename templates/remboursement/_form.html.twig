@@ -1,0 +1,30 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+    <table>
+        <tr>
+            <td style="padding: 5px;">
+                {{ form_label(form.montantR,"Montant à rembourser (en DT)") }}
+            </td>
+            <td style="padding: 5px;">
+                {{ form_widget(form.montantR) }}
+            </td>
+            <td style="padding: 5px;">
+                {{ form_errors(form.montantR) }}
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <td ><a>*Pour un prêt de 10%, la montant a rembourser doit être plus que 500DT</a></td>
+        </tr>
+        <tr>
+            <td><a>*Pour un prêt de 15%, la montant a rembourser doit être compris entre 300DT et 499DT</a></td>
+        </tr>
+        <tr>
+            <td><a>*Pour un prêt de 20%, la montant a rembourser doit être compris entre 100DT et 299DT</a></td>
+        </tr>
+    </table>
+    <br>
+    {{ form_widget(form.save) }}
+{{ form_end(form) }}

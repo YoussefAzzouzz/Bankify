@@ -1,0 +1,110 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}
+    <title>Les crédits de cette catégorie</title>
+{% endblock %}
+
+{% block content %}
+<style>
+    /* Styles for the button */
+    .button {
+        display: inline-block;
+        background-color: #4CAF50; /* Green background */
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    /* Hover effect */
+    .button:hover {
+        background-color: #45a049; /* Darker green */
+    }
+
+    /* Styles for the buttons */
+    .button2 {
+        display: inline-block;
+        background-color: #007bff; /* Blue background */
+        color: white;
+        padding: 6px 12px; /* Adjust padding to make the buttons smaller */
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-right: 5px; /* Add some margin between the buttons */
+    }
+
+    /* Hover effect */
+    .button2:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    /* Table styling */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<a href="{{ path('categorie_index') }}" class="button">Retour à la liste</a>
+<h1>Les crédits de cette catégorie sont :</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th style="text-align: center;">Id</th>
+            <th style="text-align: center;">Montant Totale</th>
+            <th style="text-align: center;">Intérêt</th>
+            <th style="text-align: center;">Date Creation</th>
+            <th style="text-align: center;">Durée Totale</th>
+            <th style="text-align: center;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for credit in credits %}
+            <tr>
+                <td style="text-align: center;">{{ credit.id }}</td>
+                <td style="text-align: center;">{{ credit.montantTotale }}</td>
+                <td style="text-align: center;">{{ credit.interet }}</td>
+                <td style="text-align: center;">{{ credit.dateC ? credit.dateC|date('Y-m-d') : '' }}</td>
+                <td style="text-align: center;">{{ credit.dureeTotale }}</td>
+                <td style="text-align: center;">
+                    <a href="{{ path('admin_show', {'id': credit.id}) }}" class="button2">Plus d'informations</a>
+                    <br>
+                    <a href="{{ path('remboursement_admin',{'id': credit.id}) }}" style="background-color:red" class="button2">Suivre remboursements</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6" style="text-align: center;">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div style="text-align: center; margin-top: 20px;">
+    {% do credits.setPageRange(3) %}
+    {{ knp_pagination_render(credits,'pagination2.html.twig') }}
+</div>
+{% endblock %}

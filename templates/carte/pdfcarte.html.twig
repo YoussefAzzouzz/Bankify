@@ -1,0 +1,33 @@
+{% block content %}
+    <div class="container" style="background-color: #ffffcc; padding: 20px;">
+        <div style="text-align: center;">
+            <h2 style="color: #336699;">Liste des cartes</h2>
+        </div>
+        <div class="table-responsive" style="margin: 0 auto;">
+            <table class="table table-bordered" style="background-color: #ffffff;">
+                <thead style="background-color: #336699; color: white;">
+                    <tr>
+                        <th style="border: 1px solid black;">ID</th>
+                        <th style="border: 1px solid black;">Numero</th>
+                        <th style="border: 1px solid black;">Date d'Expiration</th>
+                        <th style="border: 1px solid black;">Réseau</th>
+                        <th style="border: 1px solid black;">Statut de la carte</th>
+                        <th style="border: 1px solid black;">Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for carte in cartes %}
+                        <tr>
+                            <td style="border: 1px solid black;">{{ carte.id }}</td>
+                            <td style="border: 1px solid black;">{{ carte.NumC }}</td>
+                            <td style="border: 1px solid black;">{{ carte.DateExp|date }}</td>
+                            <td style="border: 1px solid black;">{{ carte.TypeC }}</td>
+                            <td style="border: 1px solid black;">{{ carte.StatutC }}</td>
+                            <td style="border: 1px solid black;">{{ carte.Type.getType() }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

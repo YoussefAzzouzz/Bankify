@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Transactions</title>{% endblock %}
+
+{% block section %}
+
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <center>{{ message }}</center>
+    </div>
+{% endfor %}
+    <div class="row justify-content-center"><h1>Les transactions</h1></div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Montant</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Statue</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transaction in pagination %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.Montant }}</td>
+                <td>{{ transaction.DateT ? transaction.DateT|date('Y-m-d') : '' }}</td>
+                <td>{{ transaction.TypeT }}</td>
+                <td>{{ transaction.StatutT }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_transaction_show', {'id': transaction.id}) }}">show</a>
+                    <a class="btn btn-primary" href="{{ path('app_transaction_edit', {'id': transaction.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row justify-content-center"><a class="btn btn-primary" href="{{ path('app_transaction_new') }}">Create new</a></div>
+    
+    <div class="row justify-content-center">
+        <a class="btn btn-primary" href="{{ path('generate_transaction_pdf') }}">Generate PDF</a>
+    </div>
+
+    <center>
+    {% if pagination.currentPageNumber > 1 %}
+    <a href="{{ path('app_transaction_index', {'page': pagination.currentPageNumber - 1}) }}">Previous</a>
+{% endif %}
+
+{% for page in 1..pagination.pageCount %}
+    {% if page == pagination.currentPageNumber %}
+        <span>{{ page }}</span>
+    {% else %}
+        <a href="{{ path('app_transaction_index', {'page': page}) }}">{{ page }}</a>
+    {% endif %}
+{% endfor %}
+
+{% if pagination.currentPageNumber < pagination.pageCount %}
+    <a href="{{ path('app_transaction_index', {'page': pagination.currentPageNumber + 1}) }}">Next</a>
+{% endif %}
+</center>
+{% endblock %}
+
+
+{% block sec2 %}
+{% endblock %}
+{% block why %}
+{% endblock %}
+
+

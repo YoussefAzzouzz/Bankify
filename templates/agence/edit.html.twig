@@ -1,0 +1,13 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Modifer Les Agences</title>{% endblock %}
+
+{% block content %}
+    <h1>Edit Agence</h1>
+
+    {{ include('agence/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_agence_index') }}"class="btn btn-primary">back to list</a>
+
+    {{ include('agence/_delete_form.html.twig') }}
+{% endblock %}

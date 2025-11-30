@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    <title>Transaction</title>
+{% endblock %}
+
+{% block section %}
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center">Create new Transaction</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center"> <!-- Center the form -->
+                            {{ include('transaction/_form.html.twig') }}
+                        </div>
+                        <center><a href="{{ path('app_transaction_index') }}" class="btn btn-secondary mt-3">Back to list</a></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sec2 %}
+    {# You can leave this block empty if you don't need to add anything specific #}
+{% endblock %}
+
+{% block why %}
+    {# You can leave this block empty if you don't need to add anything specific #}
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Virement</title>{% endblock %}
+
+{% block content %}
+<style>
+		/* Container for the form */
+		.form-container {
+			/* Increase the max-width to make the container wider */
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #f9f9f9;
+		}
+
+		/* Styles for form fields */
+		.form-field {
+			margin-bottom: 20px;
+		}
+
+		.form-label {
+			display: block;
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+
+		.form-input {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+
+		/* Style for the button */
+		.btn {
+			background-color: #007bff; /* Blue background */
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		/* Hover effect */
+		.btn:hover {
+			background-color: #0056b3; /* Darker blue on hover */
+		}
+	</style>
+    <div class="form-container"> 
+    <h1>Virement</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Compte_source</th>
+                <th>Compte_destination</th>
+                <th>Montant</th>
+                <th>Date</th>
+                <th>Heure</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for virement in virements %}
+            <tr>
+                <td>{{ virement.id }}</td>
+                <td>{{ virement.compteSource }}</td>
+                <td>{{ virement.compteDestination }}</td>
+                <td>{{ virement.montant }}</td>
+                <td>{{ virement.date ? virement.date|date('Y-m-d')}}</td>
+                <td>{{ virement.heure ? virement.heure|date('H:i:s') : '' }}</td>
+            </tr>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

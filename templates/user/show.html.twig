@@ -1,0 +1,67 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}
+	<title>User</title>
+{% endblock %}
+
+{% block content %}
+	<section style="margin-left:20px">
+		<style>
+			/* Styles for the buttons */
+			.btn {
+				display: inline-block;
+				background-color: #007bff; /* Blue background */
+				color: white;
+				padding: 10px 20px;
+				text-align: center;
+				text-decoration: none;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s;
+				margin-right: 10px; /* Add some margin between the buttons */
+			}
+
+			/* Hover effect */
+			.btn:hover {
+				background-color: #0056b3; /* Darker blue on hover */
+			}
+		</style>
+
+		<h1>User Details</h1>
+
+		<table class="table">
+			<tbody>
+
+				<tr>
+					<th>Email</th>
+					<td>{{ user.email }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ user.nom }}</td>
+				</tr>
+				<tr>
+					<th>Prenom</th>
+					<td>{{ user.prenom }}</td>
+				</tr>
+				<tr>
+					<th>Date de Naissance</th>
+					<td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') }}</td>
+				</tr>
+				<tr>
+					<th>Genre</th>
+					<td>{{ user.genre }}</td>
+				</tr>
+
+
+			</tbody>
+		</table>
+		<div style="margin-bottom:20px">
+			<a href="{{ path('app_user_index') }}" class="btn">back to list</a>
+
+			<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn">edit</a>
+		</div>
+		{{ include('user/_delete_form.html.twig') }}
+	</section>
+{% endblock %}

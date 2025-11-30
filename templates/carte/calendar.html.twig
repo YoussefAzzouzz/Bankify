@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Card Expiration Calendar{% endblock %}
+
+{% block body %}
+    <h1>Card Expiration Calendar</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in calendar %}
+                <tr>
+                    {% for day in row %}
+                        <td>
+                            <strong>{{ day.day }}</strong><br>
+                            {% for card in day.cartes %}
+                                {{ card.getNumC() }} - {{ card.getDateExp()|date('Y-m-d') }}<br>
+                            {% endfor %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

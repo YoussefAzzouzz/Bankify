@@ -1,0 +1,15 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}
+    <title>Ajouter une nouvelle categorie</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center">
+        <h1>Ajouter une nouvelle categorie</h1>
+
+        {{ include('categorie_credit/_form.html.twig') }}
+
+        <button class="btn" onclick="window.location.href='{{ path('categorie_index') }}'">Annuler</button>
+    </div>
+{% endblock %}

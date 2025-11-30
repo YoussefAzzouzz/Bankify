@@ -1,0 +1,133 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Cartes</title>{% endblock %}
+
+{% block content %}
+    <center><h1>Les cartes</h1></center>
+    <div class="d-flex"  >
+            <div class="col-md-12 mx-auto">
+        {# <div class="small fw-light">search input with icon</div> #}
+        <div class="input-group">
+        <input class="form-control border-end-0 border rounded-pill" type="search" value="search" id="example-search-input">
+        <span class="input-group-append">
+            <button class="btn btn-outline-secondary border-bottom-0 border rounded-pill ms-n5" type="button" id="searchButton">
+                Search
+            </button>
+        </span>
+        </div>
+    </div>
+</div>
+
+    <center>
+        <table class="table">
+            <thead>
+                <tr>
+                    
+                    <th>Id</th>
+                    <th>Numero</th>
+                    <th>Date_Expiration</th>
+                    <th>Network</th>
+                    <th>Statue de la carte</th>
+                    <th>Type</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for carte in cartes %}
+
+                    <tr class="blog_item">
+                        
+                        <td>{{ carte.id }}</td>
+                        <td>{{ carte.NumC }}</td>
+                        <td>{{ carte.DateExp ? carte.DateExp|date('Y-m-d') : '' }}</td>
+                        <td>{{ carte.TypeC }}</td>
+                        <td>{{ carte.StatutC }}</td>
+                        <td>
+                            {% if carte.getType() is not null %}
+                                {{ carte.getType().Type }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_carte_edit', {'id': carte.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">No records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+    
+    
+    <center><a class="btn btn-primary" href="{{ path('app_carte_new') }}">Create new</a></center>
+    
+    
+
+    <canvas id="cardTypeChart" width="200" height="200"></canvas>
+    {% block javascripts %}
+<script src="{{asset('https://code.jquery.com/jquery-3.6.4.min.js')}}"></script>
+            <link href="{{asset('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css')}}" rel="stylesheet" />
+            <script src="{{asset('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js')}}"></script>
+            <script>
+                $(document).ready(function () {
+                    $('#searchButton').click(function () {
+                        var searchQuery = $('#example-search-input').val().toLowerCase();
+                        var noUsersRow = $('#noUsersRow');
+
+                        // Loop through each user row and show/hide based on the search query
+                        $('.blog_item').each(function () {
+                            var userRowText = $(this).text().toLowerCase();
+
+                            // If the search query is found in the user row, show it; otherwise, hide it
+                            $(this).toggle(userRowText.includes(searchQuery));
+                        });
+
+                        // Show/hide the "No Users Found" row based on search results
+                        noUsersRow.toggle($('.blog_item:visible').length === 0);
+                    });
+                });
+            </script>
+
+
+
+
+<script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js')}}"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const ctx = document.getElementById('cardTypeChart').getContext('2d');
+    
+    const visaCount = {{ visaCount }};
+    const mastercardCount = {{ mastercardCount }};
+    
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Visa', 'Mastercard'],
+            datasets: [{
+                label: 'Card Types',
+                data: [visaCount, mastercardCount],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)', // Red color for Visa
+                    'rgba(54, 162, 235, 0.6)', // Blue color for Mastercard
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            aspectRatio: 2,
+            title: {
+                display: true,
+                text: 'Card Types Distribution'
+            }
+        }
+    });
+});
+</script>
+{% endblock %}
+
+
+{% endblock %}
+

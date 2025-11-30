@@ -1,0 +1,93 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Liste des Assurance</title>{% endblock %}
+
+{% block content %}
+    <h1>Liste des Assurances</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type d'Assurance</th>
+                <th>MontantPrime</th>
+                <th>Nom de l'Assuré</th>
+                <th>Nom du Beneficiaire</th>
+                <th>Info sur l'Assurance</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for assurance in assurances %}
+            <tr>
+                <td>{{ assurance.id }}</td>
+                <td>{{ assurance.typeAssurance }}</td>
+                <td>{{ assurance.montantPrime }}</td>
+                <td>{{ assurance.nomAssure }}</td>
+                <td>{{ assurance.nomBeneficiaire }}</td>
+                <td>{{ assurance.infoAssurance }}</td>
+                <td>
+                    <a href="{{ path('app_assurance_show', {'id': assurance.id}) }}" class="btn btn-primary">Show</a>
+                    <a href="{{ path('app_assurance_edit', {'id': assurance.id}) }}" class="btn btn-primary">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_assurance_new') }}" class="btn btn-primary">Create new</a>
+
+    {# Add a button to go to index.html.twig #}
+    <a href="{{ path('app_agence_index') }}" class="btn btn-primary">Go to Agence</a>
+    <a href="{{ path('app_categorie_assurance_index') }}"class="btn btn-primary">GO to Categories</a>
+    <a href="{{ path('app_home_page') }}"class="btn btn-primary">Go to FRONT</a>
+    <a href="{{ path('app_assurance_pdf') }}" class="btn btn-primary">Générer PDF</a>
+
+    <canvas id="myChart"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script>
+        var montants = [];
+        var labels = [];
+        var backgroundColors = [];
+        var borderColors = [];
+
+        {% for assurance in assurances %}
+            montants.push({{ assurance.montantPrime }});
+            labels.push("Assurance {{ assurance.id }}");
+
+            // Générer des couleurs aléatoires pour chaque assurance
+            var randomColor = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',0.2)';
+            backgroundColors.push(randomColor);
+            borderColors.push(randomColor.replace(',0.2)', ',1)'));
+        {% endfor %}
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Montant des Assurances',
+                    data: montants,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+{% endblock %}

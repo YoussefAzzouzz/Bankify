@@ -1,0 +1,18 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Modifier la catégorie</title>{% endblock %}
+
+{% block content %}
+    <a href="{{ path('categorie_index') }}" class="btn btn-primary mb-3">Retour à la liste</a>
+    <h1 class="mb-4">Modifier cette catégorie</h1>
+
+    <div class="card">
+        <div class="card-body">
+            {{ include('categorie_credit/_form.html.twig', {'button_label': 'Modifier'}) }}
+        </div>
+    </div>
+
+    <div class="mt-4">
+        {{ include('categorie_credit/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

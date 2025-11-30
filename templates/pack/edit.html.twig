@@ -1,0 +1,13 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Edit Pack</title>{% endblock %}
+
+{% block content %}
+    <h1>Edit Pack</h1>
+
+    {{ include('pack/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_pack_index') }}"class="btn btn-primary" Style='margin-left:600px'>back to list</a>
+
+    {{ include('pack/_delete_form.html.twig') }}
+{% endblock %}

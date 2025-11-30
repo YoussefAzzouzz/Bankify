@@ -1,0 +1,24 @@
+<form method="post" action="{{ path('app_compte_client_delete', {'id': compte_client.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ compte_client.id) }}">
+    <style>
+		/* Style for the button */
+		.btn-delete {
+			background-color: #ff0000; /* Red background */
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		/* Hover effect */
+		.btn-delete:hover {
+			background-color: #cc0000; /* Darker red on hover */
+		}
+	</style>
+
+	<!-- HTML for the button -->
+	<button class="btn-delete"Style='margin-left:600px'>Delete</button>
+
+</form>

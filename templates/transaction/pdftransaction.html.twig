@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des transactions</title>
+    <style>
+        /* Body background color */
+        body {
+            background-color: #6a0dad; /* Purple */
+            color: white; /* White text */
+        }
+
+        /* Table header */
+        th {
+            background-color: #45207a; /* Dark purple */
+            color: white;
+            border: 1px solid white;
+            padding: 10px;
+            width: 20%; /* Adjust column width as needed */
+        }
+
+        /* Table data */
+        td {
+            border: 1px solid white;
+            padding: 10px;
+            width: 20%; /* Adjust column width as needed */
+            color: black; /* Black text */
+        }
+
+        /* Center alignment for headers */
+        th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="text-align: center;">
+            <h2 style="color: #fff;">Liste des transactions</h2>
+        </div>
+        <div class="table-responsive" style="margin: 0 auto;">
+            <table class="table table-bordered" style="background-color: #fff; width: 100%;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Montant</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                        <tr>
+                            <td>{{ transaction.id }}</td>
+                            <td>{{ transaction.Montant }}</td>
+                            <td>{{ transaction.DateT|date }}</td>
+                            <td>{{ transaction.TypeT }}</td>
+                            <td>{{ transaction.StatutT }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

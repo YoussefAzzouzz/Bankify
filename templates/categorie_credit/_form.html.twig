@@ -1,0 +1,25 @@
+<div class="container text-center">
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+    <div class="form-group">
+        {{ form_label(form.nom, "Nom") }}
+        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.nom) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.minMontant, "Montant Minimal") }}
+        {{ form_widget(form.minMontant, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.minMontant) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.maxMontant, "Montant Maximal") }}
+        {{ form_widget(form.maxMontant, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.maxMontant) }}
+    </div>
+
+    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+
+    {{ form_end(form) }}
+</div>

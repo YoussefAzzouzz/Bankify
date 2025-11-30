@@ -1,0 +1,60 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Transactions</title>{% endblock %}
+
+{% block content %}
+    <center><h1>Les transactions</h1></center>
+    <center>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Montant</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Statue</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for transaction in pagination %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.Montant }}</td>
+                <td>{{ transaction.DateT ? transaction.DateT|date('Y-m-d') : '' }}</td>
+                <td>{{ transaction.TypeT }}</td>
+                <td>{{ transaction.StatutT }}</td>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </center>
+    
+    <center>
+    {% if pagination.currentPageNumber > 1 %}
+    <a href="{{ path('app_transaction_indexback', {'page': pagination.currentPageNumber - 1}) }}">Previous</a>
+{% endif %}
+
+{% for page in 1..pagination.pageCount %}
+    {% if page == pagination.currentPageNumber %}
+        <span>{{ page }}</span>
+    {% else %}
+        <a href="{{ path('app_transaction_indexback', {'page': page}) }}">{{ page }}</a>
+    {% endif %}
+{% endfor %}
+
+{% if pagination.currentPageNumber < pagination.pageCount %}
+    <a href="{{ path('app_transaction_indexback', {'page': pagination.currentPageNumber + 1}) }}">Next</a>
+{% endif %}
+</center>
+
+{% endblock %}
+
+
+
+

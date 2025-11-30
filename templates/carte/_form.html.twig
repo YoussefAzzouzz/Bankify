@@ -1,0 +1,51 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+<style>
+    .is-invalid {
+        border-color: #dc3545; /* or any other color you want to use to indicate an error */
+    }
+</style>
+
+<div class="form-group">
+    {{ form_label(form.Num_C,"Numero") }}
+    {% set numCClass = form_errors(form.Num_C) ? 'is-invalid' : '' %}
+    {{ form_widget(form.Num_C, {'attr': {'class': 'form-control ' ~ numCClass}}) }}
+    <div class="invalid-feedback">
+        {{ form_errors(form.Num_C) }}
+    </div>
+</div>
+<div class="form-group">
+        {{ form_label(form.Date_Exp,"Date d'expiration") }}
+        {{ form_widget(form.Date_Exp, {'attr': {'class': 'form-control'}}) }}
+        <div class="form-errors-wrapper">
+        {{ form_errors(form.Date_Exp) }}
+    </div>
+    </div>
+<div class="form-group">
+    {{ form_label(form.Type_C,"Network") }}
+    {% set typeCClass = form_errors(form.Type_C) ? 'is-invalid' : '' %}
+    {{ form_widget(form.Type_C, {'attr': {'class': 'form-control ' ~ typeCClass}}) }}
+    <div class="invalid-feedback">
+        {{ form_errors(form.Type_C) }}
+    </div>
+</div>
+<div class="form-group">
+    {{ form_label(form.Statut_C,"Statue") }}
+    {% set statutCClass = form_errors(form.Statut_C) ? 'is-invalid' : '' %}
+    {{ form_widget(form.Statut_C, {'attr': {'class': 'form-control ' ~ statutCClass}}) }}
+    <div class="invalid-feedback">
+        {{ form_errors(form.Statut_C) }}
+    </div>
+</div>
+<div class="form-group">
+        {{ form_label(form.account) }}
+        {{ form_widget(form.account, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.type) }}
+        {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+
+{{ form_end(form) }}

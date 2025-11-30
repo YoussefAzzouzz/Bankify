@@ -1,0 +1,12 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Create new CompteClient</title>{% endblock %}
+
+{% block content %}
+
+    <h1>Create new CompteClient</h1>
+
+    {{ include('compte_client/_form.html.twig') }}
+
+    <a href="{{ path('app_compte_client_index') }}"class="btn btn-primary" Style='margin-left:600px'>back to list</a>
+{% endblock %}

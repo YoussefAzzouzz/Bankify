@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	<title>Please Verify Your Email</title>
+{% endblock %}
+
+{% block body %}
+
+	<style>
+		.container {
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #f9f9f9;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		.title {
+			font-size: 24px;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+
+		.message {
+			font-size: 18px;
+			line-height: 1.5;
+			text-align: center;
+			color: #555;
+		}
+	</style>
+	<div class="container">
+		<h1 class="title">Please Verify Your Email</h1>
+		<p class="message">An email has been sent to your inbox with a verification link. Please click the link to complete the verification process.</p>
+	</div>
+{% endblock %}

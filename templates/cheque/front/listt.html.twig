@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+    <!-- Basic -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <!-- Site Metas -->
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="shortcut icon" href="{{ asset('front/images/favicon.png') }}" type="">
+
+    {% block title %}
+        <title>Bankify</title>
+    {% endblock %}
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('front/css/bootstrap.css') }}"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+
+    <!-- Font Awesome -->
+    <link href="{{ asset('front/css/font-awesome.min.css') }}" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('front/css/style.css') }}" rel="stylesheet"/>
+
+    <!-- Responsive styles -->
+    <link href="{{ asset('front/css/responsive.css') }}" rel="stylesheet"/>
+
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for star icon -->
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Style for badge */
+        .badge-warning {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+  
+           
+
+      .star-button-container {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        /* Style for the star icon */
+        .star-icon {
+            color: black;
+        }
+         .star-icon.active{
+            color: yellow;
+        }
+
+
+        .star-button-container1 {
+            display: inline-block;
+            cursor: pointer;
+        }
+.cheque-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cheque-info i {
+    margin-right: 0px; /* Pushes "p" to the far right */
+}
+
+.cheque-info h5 {
+    margin: 0 auto; /* Centers "cheque" horizontally */
+}
+
+
+
+       
+
+         
+    </style>
+
+    
+    
+</head>
+
+	{% block body %}
+		<body>
+
+    <div class="hero_area">
+
+        <div class="hero_bg_box">
+            <div class="bg_img_box">
+                <img src="{{ asset('front/images/hero-bg.png') }}" alt="">
+            </div>
+        </div>
+
+        <!-- header section starts -->
+        <header class="header_section">
+           <header class="header_section">
+						<div class="container-fluid">
+							<nav class="navbar navbar-expand-lg custom_nav-container ">
+								<a class="navbar-brand" href="index.html">
+									<span>
+										Bankify
+									</span>
+								</a>
+
+								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class=""></span>
+								</button>
+
+								<div class="collapse navbar-collapse" id="navbarSupportedContent">
+									<ul class="navbar-nav  ">
+										
+										<li class="nav-item">
+											<a class="nav-link" href="{{ path('app_macarte') }}">
+											Ma carte</a>
+										</li>
+										<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Mon Espace
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	<a class="dropdown-item" href="{{ path('app_frontcompte_client', {'id': app.user.id}) }}">Mon Compte</a>
+        <a class="dropdown-item" href="{{ path('app_front_pack') }}">Nos Pack</a>
+        <a class="dropdown-item" href="{{ path('app_front_type') }}">Nos Type</a>
+		 <a class="dropdown-item" href="{{ path('app_virement_index') }}">Virement</a>
+    </div>
+</li>
+										<li class="nav-item">
+											<a class="nav-link" href="{{ path('credit_home') }}">Mes Crédits</a>
+										</li>
+										
+										<li class="nav-item">
+    <a class="nav-link" href="{{ path('app_front_assurance') }}">Nos Assurances</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ path('app_front_agence') }}">Nos Agences</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ path('app_front_categorie_assurance') }}">Nos Categorie Assurance</a>
+</li>
+										
+										<li class="nav-item">
+											<a class="nav-link" href="/modifier">
+												<i class="fa fa-user" aria-hidden="true"></i>
+												Mon compte</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="/logout">
+												<i class="fa fa-user" aria-hidden="true"></i>
+												Logout</a>
+										</li>
+
+
+									</ul>
+								</div>
+							</nav>
+						</div>
+					</header>
+        </header>
+
+				<!-- end header section -->
+				
+			<!-- slider section -->
+<section class="slider_section">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="detail-box">
+                                <h1>Vivez l’expérience de la banque en ligne!</h1>
+                                <p>Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.</p>
+                                <div class="btn-box">
+                                    <a href="" class="btn1">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="img-box">
+                                <img src="{{ asset('front/images/slider-img.png') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="detail-box">
+                                <h1>Crypto<br>Currency</h1>
+                                <p>Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.</p>
+                                <div class="btn-box">
+                                    <a href="" class="btn1">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="img-box">
+                                <img src="{{ asset('front/images/slider-img.png') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="detail-box">
+                                <h1>Crypto<br>Currency</h1>
+                                <p>Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.</p>
+                                <div class="btn-box">
+                                    <a href="" class="btn1">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="img-box">
+                                <img src="{{ asset('front/images/slider-img.png') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ol class="carousel-indicators">
+            <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+            <li data-target="#customCarousel1" data-slide-to="1"></li>
+            <li data-target="#customCarousel1" data-slide-to="2"></li>
+        </ol>
+    </div>
+</section>
+<!-- end slider section -->
+
+			</div>
+
+
+			<!-- service section -->
+            {% set RECTraitée = app.session.get('RECTraitée') %}
+
+<section class="service_section layout_padding">
+    <div class="service_container">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>
+                    Our
+                    <span>Cheques</span>
+                </h2>
+                <p>
+                    Here you can view and manipulate your cheques.
+                </p>
+            </div>
+            {% set x = 1 %}
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent{{ random }}">
+        <ul class="navbar-nav mr-auto">
+            <!-- Add your notification dropdown menu here -->
+            <li class="nav-item dropdown">
+                <!-- Your dropdown trigger button -->
+                 {% set a = 0%}
+                 {% set tabchequeIds = [] %}
+                    {% for item in tabcheque %}
+                     {% set tabchequeIds = tabchequeIds|merge([item.id]) %}
+                      {% endfor %}
+                     {% for REC in RECTraitée %}
+             {% if REC.getChequeID().getId() in  tabchequeIds %}    
+         {% set a = a + 1 %}
+                          {% endif %}
+                     {% endfor %}
+                <a class="nav-link dropdown-toggle" id="navbarDropdown{{ random }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bell"></i> <span class="badge badge-warning">{{a}}</span>
+                </a>
+                
+                <!-- Your dropdown menu -->
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown{{ random }}">
+                    <div class="dropdown-header">You have {{a}} notifications</div>
+                  
+                     {% for REC in RECTraitée %}
+             {% if REC.getChequeID().getId() in  tabchequeIds %}    
+                        
+                       <a class="dropdown-item">
+                      
+                        <i class="fa fa-users mr-2 text-aqua">  
+                        la reclamtion {{REC.id}} a été {{REC.statutR}}  </i>
+    {% endif %}
+
+   </a>
+  
+                  {% endfor %}
+                    <!-- Add more notification items here as needed -->
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('a1', {'ref': ref}) }}">clear</a>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav> 
+
+            {% for cheque in tabcheque %}
+        
+            
+
+                                                                      
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="box">
+                        <div class="detail-box">
+
+                            <div class="cheque-info">
+    <h5>cheque{{ x }}</h5>
+     {% if cheque.getIsfav() == 0 %}
+    <div class="star-button-container" id="star-button-{{ cheque.getId() }}" data-item-id="{{ cheque.getId() }}">
+        <i class="fas fa-star star-icon"></i>
+    </div>
+{% else %}
+    <div class="star-button-container" id="star-button-{{ cheque.getId() }}" data-item-id="{{ cheque.getId() }}">
+        <i class="fas fa-star star-icon active"></i> <!-- Add the 'active' class here -->
+    </div>
+{% endif %}   
+</div>
+
+                            {% set x = x + 1 %}  
+
+                                                                              
+                             
+                       
+                            <table border="1">
+                                <tr>
+                                    <td>montantC</td>
+                                    <td>dateEmission</td>
+                                    <td>Destination</td>
+                                    <td>Reclamation   
+
+
+<!-- Bootstrap JavaScript and jQuery -->
+<!-- Bootstrap JavaScript and jQuery -->
+
+</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>{{ cheque.montantC }}</td>
+                                    <td>{{ cheque.dateEmission|date }}</td>
+                                    <td>{{ cheque.destinationC.getFullName() }}</td>
+                                    <td>
+                                        <table border="1">
+                                            <tr>
+                                                <td>categorie</td>
+                                                <td>statut</td>
+                                                <td> <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent{{ random }}">
+        <ul class="navbar-nav mr-auto">
+            <!-- Add your notification dropdown menu here -->
+            <li class="nav-item dropdown">
+                <!-- Your dropdown trigger button -->
+                 {% set a = 0%}
+                     {% for REC in RECTraitée %}
+                     {% if cheque.getId() == REC.chequeID.getId() %}
+                       {% set a = a + 1 %}
+                     {% endif %}
+                     {% endfor %}
+                <a class="nav-link dropdown-toggle" id="navbarDropdown{{ random }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bell"></i> <span class="badge badge-warning">{{a}}</span>
+                </a>
+                
+                <!-- Your dropdown menu -->
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown{{ random }}">
+                    <div class="dropdown-header">You have {{a}} notifications</div>
+                  
+                     {% for REC in RECTraitée %}
+                         {% if cheque.getId() == REC.chequeID.getId() %}
+                        
+                       <a class="dropdown-item">
+                      
+                        <i class="fa fa-users mr-2 text-aqua">  
+                        la reclamtion {{REC.id}} a été {{REC.statutR}}  </i>
+
+
+   </a> {% endif %}
+  
+                  {% endfor %}
+                    <!-- Add more notification items here as needed -->
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('a11', {'ref': cheque.id}) }}">clear</a>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>   </td>
+                                            </tr>
+                                            {% for i in tab %}
+                                                {% if cheque == i.chequeID %}
+                                                    <tr>
+                                                        <td>{{ i.categorie }}</td>
+                                                        <td>{{ i.statutR }}</td>
+                                                        <td>
+                                                            <a href="{{ path('Reclamtion_remove1', {'id': i.id}) }}" class="class="btn-box"">delete</a>
+                                                       
+                                                            <a href="{{ path('rec_edit1', {'ref': i.id}) }}" class="class="btn-box"">update</a>
+                                                        </td>
+                                                    </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('cheque_remove1', {'id': cheque.id}) }}" class="class="btn-box"">delete cheque</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('ch1_edit', {'ref': cheque.id}) }}" class="class="btn-box"">update cheque</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('ajouterreclamtion2', {'ref': cheque.id}) }}" class="class="btn-box"">Add Reclamation</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="btn-box">
+                <a href="{{ path('generate_pdf', {'ref': ref}) }}">PDF</a>
+            </div>
+            
+            <div class="btn-box">
+                <a href="{{ path('ajoutercheque1', {'ref': ref}) }}">Add New cheque</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end service section -->
+
+
+			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Function to toggle dropdown menu
+ 
+    
+
+    // Toggle dropdown menu when clicking on notification icon
+  $(document).ready(function() {
+    $('.dropdown-toggle').click(function() {
+        // Find the dropdown menu associated with the clicked toggle button
+        var dropdownMenu = $(this).closest('.dropdown').find('.dropdown-menu');
+        // Toggle the visibility of the dropdown menu
+        dropdownMenu.toggleClass('show');
+    });
+});
+
+</script>
+
+			
+
+			<!-- info section -->
+
+			<section class="info_section layout_padding2">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-lg-3 info_col">
+							<div class="info_contact">
+								<h4>
+									Address
+								</h4>
+								<div class="contact_link_box">
+									<a href="">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+										<span>
+											Location
+										</span>
+									</a>
+									<a href="">
+										<i class="fa fa-phone" aria-hidden="true"></i>
+										<span>
+											Call +01 1234567890
+										</span>
+									</a>
+									<a href="">
+										<i class="fa fa-envelope" aria-hidden="true"></i>
+										<span>
+											demo@gmail.com
+										</span>
+									</a>
+								</div>
+							</div>
+							<div class="info_social">
+								<a href="">
+									<i class="fa fa-facebook" aria-hidden="true"></i>
+								</a>
+								<a href="">
+									<i class="fa fa-twitter" aria-hidden="true"></i>
+								</a>
+								<a href="">
+									<i class="fa fa-linkedin" aria-hidden="true"></i>
+								</a>
+								<a href="">
+									<i class="fa fa-instagram" aria-hidden="true"></i>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 info_col">
+							<div class="info_detail">
+								<h4>
+									Info
+								</h4>
+								<p>
+									necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful
+								</p>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-2 mx-auto info_col">
+							<div class="info_link_box">
+								<h4>
+									Links
+								</h4>
+								<div class="info_links">
+									<a class="active" href="index.html">
+										Home
+									</a>
+									<a class="" href="about.html">
+										About
+									</a>
+									<a class="" href="service.html">
+										Services
+									</a>
+									<a class="" href="why.html">
+										Why Us
+									</a>
+									<a class="" href="team.html">
+										Team
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 info_col ">
+							<h4>
+								Subscribe
+							</h4>
+							<form action="#">
+								<input type="text" placeholder="Enter email"/>
+								<button type="submit">
+									Subscribe
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- end info section -->
+
+		
+
+			<!-- jQery -->
+			<script type="text/javascript" src="front/js/jquery-3.4.1.min.js"></script>
+			<!-- popper js -->
+			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+			<!-- bootstrap js -->
+			<script type="text/javascript" src="front/js/bootstrap.js"></script>
+			<!-- owl slider -->
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+			<!-- custom js -->
+			<script type="text/javascript" src="front/js/custom.js"></script>
+			<!-- Google Map -->
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+			<!-- End Google Map -->
+
+
+<script>
+    // Get all star button elements
+    const starButtons = document.querySelectorAll('.star-button-container');
+
+    // Add click event listener to each star button
+    starButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Toggle active class on the star icon within this button
+            const starIcon = this.querySelector('.star-icon');
+            starIcon.classList.toggle('active');
+            
+            // Get the item ID from the data attribute
+            const itemId = this.dataset.itemId;
+
+            // Send AJAX request to update favorite status
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log('Favorite status updated successfully.');
+                    } else {
+                        console.error('Error updating favorite status.');
+                    }
+                }
+            };
+            xhr.open('POST', '/cheques1/{{ ref }}');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({ itemId: itemId, isFav: starIcon.classList.contains('active') ? 1 : 0 }));
+                                            window.location.reload();
+
+        });
+    });
+</script>
+
+		</body>
+	{% endblock %}
+    
+</html>

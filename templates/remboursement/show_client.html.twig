@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Remboursement</title>{% endblock %}
+
+{% block content %}
+<section class="slider_section ">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <div class="detail-box">
+                                <h1>
+                                    Vous pouvez ici voir tous informations concernant un remboursement
+
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="img-box">
+                                <img src="{{asset('front/images/slider-img.png')}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <ol class="carousel-indicators">
+            <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+            
+        </ol>
+    </div>
+
+</section>
+{% endblock %}
+
+{% block section %}
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .button {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 20px;
+    }
+    
+    .button:hover {
+        background-color: #45a049;
+    }
+    
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    
+    .table th,
+    .table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    
+    .table th {
+        background-color: #f2f2f2;
+    }
+</style>
+<div class="container">
+    <a href="{{ path('remboursement_client',{'id':remboursement.credit.id}) }}" class="button">Retour à la liste</a>
+    <h2>Détails du remboursement</h2>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id Remboursement</th>
+                <td>{{ remboursement.id }}</td>
+            </tr>
+            <tr>
+                <th>Id Cedit</th>
+                <td>{{ remboursement.credit.getId() }}</td>
+            </tr>
+            <tr>
+                <th>Montant Remboursé</th>
+                <td>{{ remboursement.montantR }}</td>
+            </tr>
+            <tr>
+                <th>Montant Restant</th>
+                <td>{{ remboursement.montantRestant }}</td>
+            </tr>
+            <tr>
+                <th>Date Remboursement</th>
+                <td>{{ remboursement.dateR ? remboursement.dateR|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Durée Restante</th>
+                <td>{{ remboursement.dureeRestante }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="actions" style="text-align: center;">
+        <a href="{{ path('remboursement_pdf',{'id': remboursement.id}) }}" class="button" style="background-color:#0056b3">Génerer un réçu</a>
+    </div>
+</div>
+{% endblock %}
+{% block sec2 %}{% endblock %}
+{% block why %}{% endblock %}
+{% block info %}{% endblock %}

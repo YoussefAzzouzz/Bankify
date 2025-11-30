@@ -1,0 +1,13 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title> modifier les categories </title>{% endblock %}
+
+{% block content %}
+    <h1>Edit CategorieAssurance</h1>
+
+    {{ include('categorie_assurance/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_categorie_assurance_index') }}"class="btn btn-primary">back to list</a>
+
+    {{ include('categorie_assurance/_delete_form.html.twig') }}
+{% endblock %}

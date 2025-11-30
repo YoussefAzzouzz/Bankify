@@ -1,0 +1,13 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Modifier Les Assurance</title>{% endblock %}
+
+{% block content %}
+    <h1>Modifier Assurance </h1>
+
+    {{ include('assurance/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_assurance_index') }}"class="btn btn-primary">back to list</a>
+
+    {{ include('assurance/_delete_form.html.twig') }}
+{% endblock %}

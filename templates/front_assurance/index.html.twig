@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Liste des Assurance</title>{% endblock %}
+
+{% block content %}
+    <h1>Liste des Assurances</h1>
+
+    <table class="table">
+    <thead>
+        <tr style="color: white;">
+            <th>Id</th>
+            <th>Type d'Assurance</th>
+            <th>MontantPrime</th>
+            <th>Nom de l'Assuré</th>
+            <th>Nom du Beneficiaire</th>
+            <th>Info sur l'Assurance</th>
+  
+        </tr>
+        </thead>
+        <tbody>
+        {% for assurance in assurances %}
+<tr>
+    <td style="color: white;">{{ assurance.id }}</td>
+    <td style="color: white;">{{ assurance.typeAssurance }}</td>
+    <td style="color: white;">{{ assurance.montantPrime }}</td>
+    <td style="color: white;">{{ assurance.nomAssure }}</td>
+    <td style="color: white;">{{ assurance.nomBeneficiaire }}</td>
+    <td style="color: white;">{{ assurance.infoAssurance }}</td>
+    <td>
+
+    </td>
+</tr>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+            
+    <a href="{{ path('app_front_agence') }}">Go to agence</a>
+    <a href="{{ path('app_assurance_pdf') }}" class="btn btn-primary">Générer PDF</a>
+
+{% endblock %}

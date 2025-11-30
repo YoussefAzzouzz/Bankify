@@ -1,0 +1,17 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Ajouter Les Assurance</title>{% endblock %}
+
+{% block content %}
+    <h1>Ajouter Une Assurance</h1>
+
+    {% for flashMessage in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    {{ include('assurance/_form.html.twig') }}
+
+    <a href="{{ path('app_assurance_index') }}" class="btn btn-primary">Retour à la liste</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}<title>Create new Type</title>{% endblock %}
+
+{% block content %}
+    <h1>Create new Type</h1>
+
+    {{ include('type/_form.html.twig') }}
+
+    <a href="{{ path('app_type_index') }}"class="btn btn-primary" Style='margin-left:600px'>back to list</a>
+{% endblock %}

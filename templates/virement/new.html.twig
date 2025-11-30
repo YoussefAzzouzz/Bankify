@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Create new Virement</title>{% endblock %}
+
+{% block content %}
+    <h1 style="text-align:center;color:white">Create new virement</h1>
+
+    {{ include('virement/_form.html.twig') }}
+
+    <a href="{{ path('app_virement_index') }}"class="btn btn-primary" style="width: 150px; display: block; margin: 0 auto;">back to list</a>
+{% endblock %}

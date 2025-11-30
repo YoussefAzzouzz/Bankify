@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- Basic -->
+		<meta charset="utf-8"/>
+		<meta
+		http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<!-- Mobile Metas -->
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<!-- Site Metas -->
+		<meta name="keywords" content=""/>
+		<meta name="description" content=""/>
+		<meta name="author" content=""/>
+		<link rel="shortcut icon" href="front/images/favicon.png" type="">
+		{% block title %}
+			<title>
+				Bankify
+			</title>
+		{% endblock %}
+		<!-- bootstrap core css -->
+		{% block css %}
+			<link
+			rel="stylesheet" type="text/css" href="{{asset('front/css/bootstrap.css')}}"/>
+
+			<!-- fonts style -->
+			<link
+			href="{{asset('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap')}}" rel="stylesheet">
+
+			<!--owl slider stylesheet -->
+			<link
+			rel="stylesheet" type="text/css" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css')}}"/>
+
+			<!-- font awesome style -->
+			<link
+			href="{{asset('front/css/font-awesome.min.css')}}" rel="stylesheet"/>
+
+			<!-- Custom styles for this template -->
+			<link
+			href="{{asset('front/css/style.css')}}" rel="stylesheet"/>
+			<!-- responsive style -->
+			<link href="{{asset('front/css/responsive.css')}}" rel="stylesheet"/>
+		{% endblock %}
+	</head>
+	{% block body %}
+		<body>
+
+			<div class="hero_area">
+
+				<div class="hero_bg_box">
+					<div class="bg_img_box">
+						<img src="{{asset('front/images/hero-bg.png')}}" alt="">
+					</div>
+				</div>
+				{% block header %}
+					<!-- header section strats -->
+					<header class="header_section">
+						<div class="container-fluid">
+							<nav class="navbar navbar-expand-lg custom_nav-container ">
+								<a class="navbar-brand" href="index.html">
+									<span>
+										Bankify
+									</span>
+								</a>
+
+								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class=""></span>
+								</button>
+
+								<div class="collapse navbar-collapse" id="navbarSupportedContent">
+									<ul class="navbar-nav  ">
+										<li class="nav-item active">
+											<a class="nav-link" href="index.html">Acceuil
+												<span class="sr-only">(current)</span>
+											</a>
+										</li>
+										
+										<li class="nav-item">
+											<a class="nav-link" href="/login">
+												<i class="fa fa-user" aria-hidden="true"></i>
+												Login</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="/register">
+												<i class="fa fa-user" aria-hidden="true"></i>
+												Register</a>
+										</li>
+
+									</ul>
+								</div>
+							</nav>
+						</div>
+					</header>
+				{% endblock %}
+				<!-- end header section -->
+				<!-- slider section -->
+				{% block content %}
+					<section class="slider_section ">
+						<div id="customCarousel1" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<div class="container ">
+										<div class="row">
+											<div class="col-md-6 ">
+												<div class="detail-box">
+													<h1>
+														Vivez l’expérience de la banque en ligne !
+
+													</h1>
+													<p>
+														Votre argent, notre engagement : Ensemble, vers un avenir financier sûr et prospère.
+													</p>
+
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="img-box">
+													<img src="{{asset('front/images/slider-img.png')}}" alt="">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<ol class="carousel-indicators">
+								<li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+
+							</ol>
+						</div>
+
+					</section>
+				{% endblock  %}
+				<!-- end slider section -->
+			</div>
+
+
+			<!-- service section -->
+
+			<section class="service_section layout_padding">
+				<div class="service_container">
+					<div class="container ">
+						<div class="heading_container heading_center">
+							<h2>
+								Nos
+								<span>Services</span>
+							</h2>
+
+						</div>
+						<div class="row">
+							<div class="col-md-4 ">
+								<div class="box ">
+									<div class="img-box">
+										<img src="{{asset('front/images/s1.png')}}" alt="">
+									</div>
+									<div class="detail-box">
+										<h5>
+											Prêts et Crédits
+										</h5>
+										<p>
+											Demander et gérer des prêts personnels, des prêts hypothécaires, des cartes de crédit et d'autres types de crédit en ligne.
+
+										</p>
+										<a href="">
+											Read More
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 ">
+								<div class="box ">
+									<div class="img-box">
+										<img src="{{asset('front/images/s2.png')}}" alt="">
+									</div>
+									<div class="detail-box">
+										<h5>
+											Assurances
+										</h5>
+										<p>
+											Nous proposons des produits d'assurance tels que l'assurance-vie, l'assurance habitation, l'assurance automobile, etc.
+										</p>
+										<a href="">
+											Read More
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 ">
+								<div class="box ">
+									<div class="img-box">
+										<img src="{{asset('front/images/s3.png')}}" alt="">
+									</div>
+									<div class="detail-box">
+										<h5>
+											Assistance Expert
+										</h5>
+										<p>
+											Profitez d'une assistance experte personnalisée pour optimiser votre expérience sur notre site.
+										</p>
+										<a href="">
+											Read More
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+			<!-- end service section -->
+
+
+			<!-- about section -->
+
+			<section class="about_section layout_padding">
+				<div class="container  ">
+					<div class="heading_container heading_center">
+						<h2>
+							À propos
+							<span>de nous</span>
+						</h2>
+
+					</div>
+					<div class="row">
+						<div class="col-md-6 ">
+							<div class="img-box">
+								<img src="{{asset('front/images/about-img.png')}}" alt="">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="detail-box">
+								<h3>
+									Nous sommes Bankify
+								</h3>
+								<p>
+									Bankify est un projet ambitieux visant à révolutionner l'expérience bancaire en proposant une plateforme en ligne innovante et complète. L'objectif principal est de fournir aux clients une solution bancaire numérique sécurisée et adaptable à leurs besoins financiers diversifiés. Cette banque en ligne s'appuie sur les dernières avancées technologiques pour offrir des services bancaires modernes et agiles.
+								</p>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- end about section -->
+
+			<!-- why section -->
+
+			<section class="why_section layout_padding">
+				<div class="container">
+					<div class="heading_container heading_center">
+						<h2>
+							Pourquoi Nous
+							<span>Choisir</span>
+						</h2>
+					</div>
+					<div class="why_container">
+						<div class="box">
+							<div class="img-box">
+								<img src="{{asset('front/images/w1.png')}}" alt="">
+							</div>
+							<div class="detail-box">
+								<h5>
+									Expertise Professionnelle
+								</h5>
+								<p>
+									Notre équipe possède une expertise approfondie dans le domaine bancaire et financier et est dédiée à fournir des solutions de qualité supérieure.
+								</p>
+							</div>
+						</div>
+						<div class="box">
+							<div class="img-box">
+								<img src="{{asset('front/images/w2.png')}}" alt="">
+							</div>
+							<div class="detail-box">
+								<h5>
+									Sécurité Maximale
+								</h5>
+								<p>
+									Votre sécurité est notre priorité absolue.
+								</p>
+							</div>
+						</div>
+
+						<div class="box">
+							<div class="img-box">
+								<img src="{{asset('front/images/w4.png')}}" alt="">
+							</div>
+							<div class="detail-box">
+								<h5>
+									Service Client Dédié
+								</h5>
+								<p>
+									Notre équipe de service clientèle est là pour vous aider à tout moment. Que vous ayez des questions sur vos comptes ou que vous ayez besoin d'assistance pour une transaction, nous sommes là pour vous aider.
+								</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+			<!-- end why section -->
+
+
+			<!-- info section -->
+
+			<section class="info_section layout_padding2">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-lg-3 info_col">
+							<div class="info_contact">
+								<h4>
+									Addresse
+								</h4>
+								<div class="contact_link_box">
+									<a href="">
+										<i class="fa fa-phone" aria-hidden="true"></i>
+										<span>
+											+216 98 632 447
+										</span>
+									</a>
+									<a href="">
+										<i class="fa fa-envelope" aria-hidden="true"></i>
+										<span>
+											Bankify@gmail.com
+										</span>
+									</a>
+								</div>
+							</div>
+							<div class="info_social">
+								<a href="">
+									<i class="fa fa-facebook" aria-hidden="true"></i>
+								</a>
+								<a href="">
+									<i class="fa fa-twitter" aria-hidden="true"></i>
+								</a>
+								<a href="">
+									<i class="fa fa-linkedin" aria-hidden="true"></i>
+								</a>
+								<a href="">
+									<i class="fa fa-instagram" aria-hidden="true"></i>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 info_col">
+							<div class="info_detail">
+								<h4>
+									Info
+								</h4>
+								<p>
+									Bankify est une institution financière de premier plan, offrant une gamme complète de services bancaires en ligne pour répondre à vos besoins financiers.
+								</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+			<!-- end info section -->
+
+
+			{% block js %}
+				<!-- jQery -->
+				<script type="text/javascript" src="{{asset('front/js/jquery-3.4.1.min.js')}}"></script>
+				<!-- popper js -->
+				<script src="{{asset('https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js')}}" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+				<!-- bootstrap js -->
+				<script type="text/javascript" src="{{asset('front/js/bootstrap.js')}}"></script>
+				<!-- owl slider -->
+				<script type="text/javascript" src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js')}}"></script>
+				<!-- custom js -->
+				<script type="text/javascript" src="{{asset('front/js/custom.js')}}"></script>
+				<!-- Google Map -->
+				<script src="{{asset('https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap')}}"></script>
+				<!-- End Google Map -->
+			{% endblock %}
+		</body>
+	{% endblock %}
+</html>

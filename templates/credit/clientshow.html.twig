@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Credit</title>{% endblock %}
+{% block content %}
+<section class="slider_section ">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <div class="detail-box">
+                                <h1>
+                                    Vous pouvez ici avoir tous informations de votre crédit
+
+                                </h1>
+                                <p>
+                                    et suivre les Remboursements
+                                </p>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="img-box">
+                                <img src="{{asset('front/images/slider-img.png')}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <ol class="carousel-indicators">
+            <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+            
+        </ol>
+    </div>
+
+</section>
+{% endblock %}
+
+{% block section %}
+<style>
+    .container_table {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    
+    .table th,
+    .table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    
+    .table th {
+        background-color: #f2f2f2;
+    }
+    
+    .button {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 5px 10px;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-right: 10px;
+    }
+    
+    .button:hover {
+        background-color: #0056b3;
+    }
+    
+    .actions {
+        margin-top: 20px;
+        text-align: center;
+    }
+</style>
+<div class="container_table">
+<a href="{{ path('credit_index_for_compte',{'id': credit.getCompte().getId()}) }}" class="button">Retour</a>    <br>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id Credit</th>
+                <td>{{ credit.id }}</td>
+            </tr>
+            <tr>
+                <th>Montant Total</th>
+                <td>{{ credit.montantTotale }}</td>
+            </tr>
+            <tr>
+                <th>Intérêt</th>
+                <td>{{ credit.interet }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ credit.categorie.getNom() }}</td>
+            </tr>
+            <tr>
+                <th>Date Creation</th>
+                <td>{{ credit.dateC ? credit.dateC|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Durée Totale</th>
+                <td>{{ credit.dureeTotale }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="actions">
+        <a href="{{ path('remboursement_client',{'id': credit.id}) }}" class="button">Suivre Remboursements</a>
+        <a href="{{ path('remboursement_new',{'id': credit.id}) }}" class="button">Payer une partie de crédit</a>
+        <a href="{{ path('credit_pdf',{'id': credit.id}) }}" class="button">Génerer comme document</a>
+    </div>
+</div>
+{% endblock %}
+{% block sec2 %}{% endblock %}
+{% block why %}{% endblock %}
+{% block info %}{% endblock %}

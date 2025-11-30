@@ -1,0 +1,51 @@
+<style>
+		/* Container for the form */
+		.form-container {
+			width: 500px; /* Increase the max-width to make the container wider */
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #f9f9f9;
+		}
+
+		/* Styles for form fields */
+		.form-field {
+			margin-bottom: 20px;
+		}
+
+		.form-label {
+			display: block;
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+
+		.form-input {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+
+		/* Style for the button */
+		.btn {
+			background-color: #007bff; /* Blue background */
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		/* Hover effect */
+		.btn:hover {
+			background-color: #0056b3; /* Darker blue on hover */
+		}
+	</style>
+<div class="form-container">
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+</div>
