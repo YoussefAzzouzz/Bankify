@@ -1,3 +1,6 @@
+[![Watch the video](https://raw.githubusercontent.com/YoussefAzzouzz/Bankify/main/thumbnail.png)](https://raw.githubusercontent.com/YoussefAzzouzz/Bankify/main/demoo.mp4)
+
+
 # Bankify - Système de Gestion Bancaire
 
 Une application web complète de gestion bancaire basée sur Symfony qui offre des opérations bancaires complètes incluant la gestion de comptes, les transactions, les crédits, les assurances et le traitement des chèques.
