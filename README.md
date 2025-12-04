@@ -1,4 +1,4 @@
-[![Thumbnail](https://raw.githubusercontent.com/YoussefAzzouzz/Bankify/main/thumbnail.png)](https://github.com/user-attachments/assets/83a1a972-e002-4fd7-8d73-355461dade62)
+[![Thumbnail](https://github.com/user-attachments/assets/e4580b43-b369-4c77-b05d-0750ce1c6ac9)](https://github.com/user-attachments/assets/83a1a972-e002-4fd7-8d73-355461dade62)
 
 # Bankify - Système de Gestion Bancaire
 
